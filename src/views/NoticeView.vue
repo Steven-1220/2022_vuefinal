@@ -1,0 +1,48 @@
+<template>
+  <div class="wrap">
+    <div class="container mt-5">
+      <h2 class="text-center">購物須知</h2>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+          <img
+            src="https://images.unsplash.com/photo-1572978577765-462b91a7f9e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+            alt=""
+            style="width: 50%; height: 70%; object-fit: cover"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4>
+            <span class="text-primary"><i class="bi bi-circle-fill"></i></span
+            >有鑑賞期嗎?可以退貨嗎?
+          </h4>
+          <p class="fs-5">
+            商品皆為新鮮無添加防腐劑的食品，故無7天鑑賞期。若需退貨，請先告知原因，如包裝不完整、破損，並與客服聯絡。
+          </p>
+        </div>
+        <div class="col-12">
+          <h4>
+            <span class="text-primary"><i class="bi bi-circle-fill"></i></span
+            >商品到貨時間
+          </h4>
+          <p class="fs-5">
+            訂單完成並成功付款後，商品將於5日內(含假日)送到您的指定地點
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <FooterView></FooterView>
+</template>
+
+<script>
+import FooterView from "@/components/FooterView.vue";
+export default {
+  components: {
+    FooterView,
+  },
+};
+</script>

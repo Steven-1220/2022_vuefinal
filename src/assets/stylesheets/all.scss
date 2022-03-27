@@ -1,0 +1,15 @@
+// ~ 代表 node_modules 的 BS
+@import "~bootstrap/scss/functions";
+
+// 自定義 variable 檔
+@import "./helpers/variables";
+// 載入所有 BS 
+@import "~bootstrap/scss/bootstrap";
+
+
+//客製化
+
+@import "./components/header";
+@import "./components/deco-line";
+@import "./components/btn-custom";
+@import "./components/footer";

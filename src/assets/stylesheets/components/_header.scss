@@ -1,0 +1,17 @@
+.main-header {
+  background-position: center center;
+  background-size: cover;
+  height: 600px;
+}
+
+#go-top {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid #222;
+  color: #000;
+  background: #FFD34C;
+  padding: 10px;
+}

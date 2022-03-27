@@ -1,0 +1,25 @@
+.nav-item > .underline-effect::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  margin: 5px 0;
+  background-color: #BB9926;
+  transition: width 0.6s 0.3s;
+}
+
+.nav-item:hover .underline-effect::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .nav-item:hover .underline-effect::after {
+      width: 12%;
+  }
+
+  .underline-effect  span {
+    top: 10px;
+    left: 20px;
+  }
+  
+}
