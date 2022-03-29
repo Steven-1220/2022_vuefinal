@@ -51,9 +51,9 @@
         </div>
       </div>
       <div class="col-md-9 pb-4">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           <div class="col" v-for="item in products" :key="item.id">
-            <div class="card border-0 h-100">
+            <div class="card border-0 h-100 move">
               <div class="card-body text-center position-relative">
                 <!-- <div
                   :style="{ backgroundImage: `url(${item.imageUrl})` }"
@@ -166,21 +166,22 @@ export default {
         });
     },
 
-    getProducts() {
-      this.isLoading = true;
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`;
-      this.$http
-        .get(url)
-        .then((res) => {
-          console.log(res);
-          this.products = res.data.products;
-          emitter.emit("get-cart");
-          this.isLoading = false;
-        })
-        .catch((err) => {
-          console.log(err.response.data);
-        });
-    },
+    // getProducts() {
+    //   this.isLoading = true;
+    //   const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`;
+    //   this.$http
+    //     .get(url)
+    //     .then((res) => {
+    //       console.log(res);
+    //       this.products = res.data.products;
+    //       emitter.emit("get-cart");
+    //       this.isLoading = false;
+    //     })
+    //     .catch((err) => {
+    //       console.log(err.response.data);
+    //     });
+    // },
+
     // 加入購物車
     addToCart(id) {
       this.isLoading = true;
@@ -210,3 +211,14 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.move {
+  transform: translateY(0px);
+  transition: 0.7s;
+}
+
+.move:hover {
+  transform: translateY(-30px);
+}
+</style>

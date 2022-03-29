@@ -128,125 +128,112 @@
   <section class="py-5">
     <div class="container">
       <h3 class="fw-bold pb-3">其他推薦商品</h3>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <a href="#">
-                <img
-                  src="https://images.unsplash.com/photo-1616534900864-45d0da88d9bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
-                  alt=""
-                  class="img-fluid"
-                  style="height: 280px; object-fit: cover"
-                />
-              </a>
-              <div class="text-center text-dark mt-2">
-                <a href="#" class="text-decoration-none">閃電泡芙</a>
-              </div>
-              <div class="d-flex align-items-center justify-content-around">
-                <div
-                  class="text-center text-muted text-decoration-line-through mt-2"
-                >
-                  原價 NT$ <span class="fs-5">70</span>
+      <swiper
+        :slides-per-view="1"
+        :space-between="50"
+        :modules="modules"
+        navigation
+        :pagination="{ clickable: true }"
+        :breakpoints="{
+          '576': {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          '768': {
+            slidesPerView: 2,
+            spaceBetween: 40,
+          },
+          '1024': {
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+        }"
+      >
+        <swiper-slide v-for="item in products" :key="item.id">
+          <div class="row">
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body text-center">
+                  <router-link :to="`${item.id}`">
+                    <img
+                      :src="item.imageUrl"
+                      alt=""
+                      class="img-fluid"
+                      style="height: 280px; object-fit: cover"
+                    />
+                  </router-link>
+                  <div class="text-center text-dark mt-2">
+                    <router-link
+                      :to="`${item.id}`"
+                      class="text-decoration-none"
+                      >{{ item.title }}</router-link
+                    >
+                  </div>
+                  <div class="d-flex align-items-center justify-content-around">
+                    <div
+                      class="text-center text-muted text-decoration-line-through mt-2"
+                    >
+                      原價 NT$ <span class="fs-5">{{ item.origin_price }}</span>
+                    </div>
+                    <div class="text-center text-dark mt-2">
+                      特價 NT$ <span class="fs-5">{{ item.price }}</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="text-center text-dark mt-2">
-                  特價 NT$ <span class="fs-5">60</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-body d-flex justify-content-between">
-              <a href="#" class="btn btn-outline-primary"> 查看產品 </a>
+                <div class="card-body d-flex justify-content-between">
+                  <router-link
+                    :to="`${item.id}`"
+                    class="btn btn-outline-primary"
+                  >
+                    查看產品
+                  </router-link>
 
-              <button type="button" class="btn btn-primary">加入購物車</button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    @click="addToCart(item.id)"
+                  >
+                    加入購物車
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <a href="#">
-                <img
-                  src="https://images.unsplash.com/photo-1616534900864-45d0da88d9bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
-                  alt=""
-                  class="img-fluid"
-                  style="height: 280px"
-                />
-              </a>
-              <div class="text-center text-dark mt-2">
-                <a href="#" class="text-decoration-none">閃電泡芙</a>
-              </div>
-              <div class="d-flex align-items-center justify-content-around">
-                <div
-                  class="text-center text-muted text-decoration-line-through mt-2"
-                >
-                  原價 NT$ <span class="fs-5">70</span>
-                </div>
-                <div class="text-center text-dark mt-2">
-                  特價 NT$ <span class="fs-5">60</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-body d-flex justify-content-between">
-              <a href="#" class="btn btn-outline-primary"> 查看產品 </a>
-
-              <button type="button" class="btn btn-primary">加入購物車</button>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <a href="#">
-                <img
-                  src="https://images.unsplash.com/photo-1616534900864-45d0da88d9bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
-                  alt=""
-                  class="img-fluid"
-                  style="height: 280px"
-                />
-              </a>
-              <div class="text-center text-dark mt-2">
-                <a href="#" class="text-decoration-none">閃電泡芙</a>
-              </div>
-              <div class="d-flex align-items-center justify-content-around">
-                <div
-                  class="text-center text-muted text-decoration-line-through mt-2"
-                >
-                  原價 NT$ <span class="fs-5">70</span>
-                </div>
-                <div class="text-center text-dark mt-2">
-                  特價 NT$ <span class="fs-5">60</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-body d-flex justify-content-between">
-              <a href="#" class="btn btn-outline-primary"> 查看產品 </a>
-              <button type="button" class="btn btn-primary">加入購物車</button>
-            </div>
-          </div>
-        </div>
-      </div>
+        </swiper-slide>
+      </swiper>
     </div>
   </section>
   <FooterView></FooterView>
 </template>
 
 <script>
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation, Pagination } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import emitter from "@/libraries/emitter";
 import FooterView from "@/components/FooterView.vue";
 export default {
   components: {
     FooterView,
+    Swiper,
+    SwiperSlide,
   },
   data() {
     return {
       product: {},
+      products: [],
       quantity: 1,
       loadingState: "",
+      modules: [Navigation, Pagination],
       favorite: JSON.parse(localStorage.getItem("favorite")) || [],
     };
   },
   methods: {
-    // 取得特定產品資訊
+    // 取得單一特定產品資訊
     getProductInfo() {
       // $router -> 方法 ，$route -> 物件
       // console.log(this.$route);
@@ -257,6 +244,8 @@ export default {
         .then((res) => {
           console.log(res);
           this.product = res.data.product;
+          // 再取得同一種類產品
+          this.getProduct(this.product.category);
         })
         .catch((err) => {
           console.log(err);
@@ -289,6 +278,21 @@ export default {
         });
     },
 
+    // 取得同一種類產品
+    getProduct(category) {
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category}`;
+      this.$http
+        .get(url)
+        .then((res) => {
+          console.log(res.data);
+          this.products = res.data.products;
+          // emitter.emit("get-cart");
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        });
+    },
+
     switchFavorite() {
       const id = this.$route.params.id;
       // console.log(id);
@@ -313,9 +317,10 @@ export default {
       deep: true,
     },
   },
+
   mounted() {
     this.getProductInfo();
-    console.log(this.favorite);
+    // console.log(this.favorite);
   },
 };
 </script>

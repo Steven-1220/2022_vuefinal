@@ -1,9 +1,14 @@
 <template>
   <VueLoading :active="isLoading"></VueLoading>
-  <h2 class="text-center">訂單</h2>
+  <h2 class="text-center pt-4">訂單</h2>
   <div class="container">
     <div class="row py-3">
       <div class="col">
+        <div class="text-end mt-4">
+          <button class="btn btn-warning" @click="openModal('deleteAllOrder')">
+            刪除所有訂單
+          </button>
+        </div>
         <table class="table mt-4">
           <thead>
             <tr>
@@ -77,6 +82,7 @@
     <!-- 刪除訂單元件 -->
     <DeleteOrderModal
       :delete-order-item="tempOrder"
+      :is-all-orders="isAllOrders"
       @get-orders="getAllOrders"
       ref="delModalRef"
     ></DeleteOrderModal>
@@ -101,6 +107,7 @@ export default {
       tempOrder: {},
       isNew: false,
       isLoading: false,
+      isAllOrders: false,
     };
   },
   methods: {
@@ -128,9 +135,14 @@ export default {
         this.isNew = false;
       } else if (state == "delete") {
         this.tempOrder = JSON.parse(JSON.stringify(item));
+        this.isAllOrders = false;
+        this.$refs.delModalRef.open();
+      } else if (state == "deleteAllOrder") {
+        this.isAllOrders = true;
         this.$refs.delModalRef.open();
       }
     },
+
     updateOrderState(item) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${item.id}`;
       const paidState = { is_paid: item.is_paid };

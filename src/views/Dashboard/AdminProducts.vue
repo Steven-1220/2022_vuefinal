@@ -1,6 +1,6 @@
 <template>
   <VueLoading :active="isLoading"></VueLoading>
-  <h2 class="text-center">產品列表</h2>
+  <h2 class="text-center pt-4">產品列表</h2>
   <div class="container">
     <div class="row py-3">
       <div class="col">

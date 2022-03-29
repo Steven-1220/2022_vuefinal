@@ -1,13 +1,17 @@
 <template>
   <VueLoading :active="isLoading"></VueLoading>
-  <div class="container-xl mt-5 w-50">
-    <div class="row justify-content-center">
-      <h1 class="h3 mb-3 text-center font-weight-normal">請先登入</h1>
-      <div class="col-8">
-        <form id="form" class="form-signin">
-          <div class="form-floating mb-3">
+  <html>
+    <body>
+      <div class="container login w-25 mt-5">
+        <form
+          class="row g-3 border border-4 border-warning p-4"
+          @submit.prevent="login"
+        >
+          <h1 class="h3 mb-3 text-center font-weight-normal">請先登入</h1>
+          <div class="col-12">
+            <label for="username" class="form-label">帳號</label>
             <input
-              type="email"
+              type="text"
               class="form-control"
               id="username"
               placeholder="name@example.com"
@@ -15,30 +19,30 @@
               required
               autofocus
             />
-            <label for="username">Email address</label>
           </div>
-          <div class="form-floating">
+          <div class="col-12">
+            <label for="password" class="form-label">密碼</label>
             <input
               type="password"
               class="form-control"
               id="password"
-              placeholder="Password"
               v-model="user.password"
               required
             />
-            <label for="password">Password</label>
           </div>
-          <button
-            class="btn btn-lg btn-primary w-100 mt-3 loginBtn"
-            type="submit"
-            @click.prevent="login"
-          >
-            登入
-          </button>
+
+          <div class="col-md-6 text-nowrap">
+            <button type="submit" class="w-100 btn btn-primary">登入</button>
+          </div>
+          <div class="col-md-6 text-nowrap">
+            <router-link to="/" class="w-100 btn btn-primary"
+              >回首頁</router-link
+            >
+          </div>
         </form>
       </div>
-    </div>
-  </div>
+    </body>
+  </html>
 </template>
 
 <script>
@@ -83,3 +87,26 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background-image: url("https://images.unsplash.com/photo-1536688261748-9d56b3acf077?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login {
+  height: 450px;
+}
+.login > form {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+</style>

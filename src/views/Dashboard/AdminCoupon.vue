@@ -1,6 +1,6 @@
 <template>
   <VueLoading :active="isLoading"></VueLoading>
-  <h2 class="text-center">優惠券</h2>
+  <h2 class="text-center pt-4">優惠券</h2>
   <div class="container">
     <div class="text-end mt-4">
       <button class="btn btn-primary" type="button" @click="openModal('new')">

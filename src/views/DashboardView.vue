@@ -1,13 +1,13 @@
 <template>
   <ToastMessage></ToastMessage>
 
-  <nav class="navbar px-0 navbar-expand-lg navbar-light bg-primary">
+  <nav class="navbar px-0 navbar-expand-lg navbar-light bg-warning">
     <div
       class="collapse navbar-collapse custom-header-md-open container-fluid"
       id="navbarNav"
     >
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <router-link class="nav-link ps-md-0" to="/admin/products"
             >產品</router-link
           >
@@ -17,17 +17,17 @@
             >訂單</router-link
           >
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <router-link class="nav-link ps-md-2" to="/admin/coupon"
             >優惠券</router-link
           >
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <router-link class="nav-link ps-md-2" to="/admin/article"
             >貼文</router-link
           >
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <router-link class="nav-link ps-md-5" to="/login">登出</router-link>
         </li>
       </ul>

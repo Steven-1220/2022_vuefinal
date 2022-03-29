@@ -1,6 +1,5 @@
 <template>
   <Navbar></Navbar>
-  <!-- <FooterView></FooterView> -->
   <div class="wrap">
     <header
       class="main-header px-5 py-5 d-flex justify-content-center align-items-md-center"
@@ -19,7 +18,7 @@
     </header>
 
     <section class="container py-4">
-      <div class="row mb-4">
+      <div class="row mb-4 g-md-0">
         <div class="col-md-6">
           <img
             src="https://images.unsplash.com/photo-1604514813549-92e26bbae4f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
@@ -27,7 +26,9 @@
             alt=""
           />
         </div>
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <div
+          class="col-md-6 d-flex justify-content-center align-items-center home-special"
+        >
           <div class="pt-3">
             <h2 class="text-warning text-center">新鮮天然</h2>
             <p class="lh-lg fs-4">
@@ -38,7 +39,7 @@
           </div>
         </div>
       </div>
-      <div class="row flex-md-row-reverse">
+      <div class="row g-md-0 flex-md-row-reverse">
         <div class="col-md-6">
           <img
             src="https://images.unsplash.com/photo-1519733870-f96bef9bc85f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"
@@ -46,7 +47,9 @@
             alt=""
           />
         </div>
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <div
+          class="col-md-6 d-flex justify-content-center align-items-center home-special"
+        >
           <div class="pt-3">
             <h2 class="text-warning text-center">精心製作</h2>
             <p class="lh-lg fs-4">
@@ -132,9 +135,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// import "swiper/modules/navigation/navigation.min.css";
-// import "swiper/modules/pagination/pagination.min.css";
-
 import Navbar from "@/components/NavBar.vue";
 import FooterView from "@/components/FooterView.vue";
 export default {
@@ -172,3 +172,24 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.home-special {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+  transition: 0.5s;
+  transform: scale(0.9);
+}
+
+.home-special:hover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .home-special {
+    background-color: white;
+    opacity: 1;
+  }
+}
+</style>

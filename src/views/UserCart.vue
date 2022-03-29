@@ -1,6 +1,4 @@
 <template>
-  <!-- 最終版型 -->
-
   <VueLoading :active="isLoading"></VueLoading>
   <div class="wrap">
     <section class="pt-5">
@@ -35,10 +33,10 @@
         <div class="row py-5">
           <div class="col">
             <div class="card">
-              <div class="card-header">
+              <div class="card-header bg-primary text-white">
                 <div class="text-end">
                   <button
-                    class="btn btn-outline-danger"
+                    class="btn btn-outline-warning"
                     type="button"
                     @click="deleteAllCartItem"
                     :disabled="cartData.carts.length === 0"
@@ -64,11 +62,11 @@
                         <!-- 刪除特定購物車產品按鈕 -->
                         <button
                           type="button"
-                          class="btn btn-outline-danger btn-sm"
+                          class="btn btn-danger btn-sm"
                           :disabled="loadingState === item.id"
                           @click="removeCartItem(item.id)"
                         >
-                          x
+                          <i class="bi bi-x-lg"></i>
                         </button>
                       </td>
                       <td scope="row">
@@ -128,7 +126,7 @@
                 type="text"
                 class="form-control"
                 v-model="discountCode"
-                placeholder="請輸入優惠碼"
+                placeholder="請輸入優惠碼 d123"
               />
 
               <button

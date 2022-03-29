@@ -146,6 +146,24 @@
                   </div>
 
                   <div class="mb-3">
+                    <label for="payment" class="form-label">付款方式</label>
+                    <VField
+                      class="form-select mb-3"
+                      id="payment"
+                      name="付款方式"
+                      rules="required"
+                      as="select"
+                      :class="{ 'is-invalid': errors['付款方式'] }"
+                      v-model="form.user.payment"
+                    >
+                      <option value="">請選擇付款方式</option>
+                      <option value="信用卡付款">信用卡付款</option>
+                      <option value="ATM 轉帳">ATM 轉帳</option>
+                      <option value="超商取貨付款">超商取貨付款</option>
+                    </VField>
+                  </div>
+
+                  <div class="mb-3">
                     <label for="message" class="form-label">留言</label>
                     <textarea
                       id="message"
@@ -158,28 +176,17 @@
                   <div class="text-end">
                     <!-- 驗證沒過時或是購物車中沒產品時，無法 click -->
                     <router-link
-                      type="submit"
-                      class="btn btn-danger"
                       to="/user/orderfinish"
+                      class="btn btn-danger"
+                      type="submit"
                       :disabled="
                         Object.keys(errors).length > 0 ||
                         cartData.carts.length === 0
                       "
-                      @click.prevent="sendOrder"
+                      @click="sendOrder"
                     >
                       送出訂單
                     </router-link>
-                    <!-- <button
-                      type="submit"
-                      class="btn btn-danger"
-                      :disabled="
-                        Object.keys(errors).length > 0 ||
-                        cartData.carts.length === 0
-                      "
-                      @click.prevent="sendOrder"
-                    >
-                      送出訂單
-                    </button> -->
                   </div>
                 </VForm>
               </div>
@@ -210,6 +217,7 @@ export default {
           email: "",
           tel: "",
           address: "",
+          payment: "",
         },
         message: "",
       },
@@ -233,7 +241,7 @@ export default {
           // console.log(this.orderId);
           // alert(res.data.message);
           // this.$refs.form.resetForm();
-          // this.$router.push({ name: "完成訂單", params: this.orderId });
+          // this.$router.push({ name: "完成訂單" });
           this.form.message = "";
           emitter.emit("getOrderId", this.orderId);
           emitter.emit("get-cart");

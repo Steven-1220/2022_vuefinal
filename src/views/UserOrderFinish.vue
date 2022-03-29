@@ -39,7 +39,7 @@
                     <tr>
                       <th>產品名稱</th>
                       <th>數量</th>
-                      <th>價格</th>
+                      <th>單價</th>
                     </tr>
                   </thead>
                   <tbody class="text-nowrap">
@@ -92,6 +92,10 @@
                     <tr>
                       <td>取貨地點</td>
                       <td>{{ order.user.address }}</td>
+                    </tr>
+                    <tr>
+                      <td>付款方式</td>
+                      <td>{{ order.user.payment }}</td>
                     </tr>
                     <tr>
                       <td>備註</td>
