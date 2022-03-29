@@ -72,7 +72,12 @@
           <div class="col-md-6">
             <div class="row justify-content-center g-4">
               <div class="col-md-10 pb-5">
-                <VForm ref="form" class="col-md-6 w-100" v-slot="{ errors }">
+                <VForm
+                  ref="form"
+                  class="col-md-6 w-100"
+                  v-slot="{ errors }"
+                  @submit="sendOrder"
+                >
                   <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <VField
@@ -161,6 +166,10 @@
                       <option value="ATM 轉帳">ATM 轉帳</option>
                       <option value="超商取貨付款">超商取貨付款</option>
                     </VField>
+                    <ErrorMessage
+                      name="付款方式"
+                      class="invalid-feedback"
+                    ></ErrorMessage>
                   </div>
 
                   <div class="mb-3">
@@ -174,15 +183,11 @@
                     ></textarea>
                   </div>
                   <div class="text-end">
-                    <!-- 驗證沒過時或是購物車中沒產品時，無法 click -->
+                    <!-- 驗證沒過時無法 click -->
                     <button
-                      class="btn btn-danger"
                       type="submit"
-                      :disabled="
-                        Object.keys(errors).length > 0 ||
-                        cartData.carts.length === 0
-                      "
-                      @submit.prevent="sendOrder"
+                      class="btn btn-danger"
+                      :disabled="Object.keys(errors).length > 0"
                     >
                       送出訂單
                     </button>
@@ -234,17 +239,12 @@ export default {
       this.$http
         .post(url, { data: order })
         .then((res) => {
-          // console.log(res);
-          // console.log(res.data.orderId);
           this.orderId = res.data.orderId;
           // console.log(this.orderId);
-          // alert(res.data.message);
           // this.$refs.form.resetForm();
-          // this.$router.push({ name: "完成訂單" });
           this.form.message = "";
-          emitter.emit("getOrderId", this.orderId);
+          this.$router.push({ name: "完成訂單", query: { id: this.orderId } });
           emitter.emit("get-cart");
-          this.$router.push("/user/orderfinish");
         })
         .catch((err) => {
           console.log(err);
@@ -258,7 +258,6 @@ export default {
         .then((res) => {
           console.log(res);
           this.cartData = res.data.data;
-          // console.log(this.cartData);
         })
         .catch((err) => {
           console.log(err.response.data);

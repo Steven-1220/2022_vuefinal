@@ -113,7 +113,7 @@
                 <router-link
                   to="/user/pay"
                   class="btn btn-danger"
-                  @click="payOrder(orderId)"
+                  @click="payOrder()"
                   >確認付款</router-link
                 >
               </div>
@@ -182,7 +182,8 @@ export default {
         });
     },
     //付款
-    payOrder(orderId) {
+    payOrder() {
+      const orderId = this.$route.query.id;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${orderId}`;
       this.$http
         .post(url)
@@ -198,12 +199,8 @@ export default {
   },
   mounted() {
     this.getCartList();
-    emitter.on("getOrderId", (data) => {
-      console.log("orderId", data);
-      this.orderId = data;
-      this.getOrder(this.orderId);
-      return this.orderId;
-    });
+
+    this.getOrder(this.$route.query.id);
   },
 };
 </script>

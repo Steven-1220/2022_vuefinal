@@ -230,7 +230,7 @@ export default {
       loadingState: "",
       modules: [Navigation, Pagination],
       favorite: JSON.parse(localStorage.getItem("favorite")) || [],
-      id: this.$route.params.id,
+      id: "",
     };
   },
 
@@ -238,7 +238,7 @@ export default {
     // 取得單一特定產品資訊
     getProductInfo() {
       // $router -> 方法 ，$route -> 物件
-      // console.log(this.$route);
+      console.log(this.$route);
       const id = this.$route.params.id;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`;
       this.$http
@@ -318,7 +318,8 @@ export default {
       },
       deep: true,
     },
-    id() {
+    $route(to) {
+      this.id = to.params.id;
       this.getProductInfo();
     },
   },
