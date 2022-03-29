@@ -175,18 +175,17 @@
                   </div>
                   <div class="text-end">
                     <!-- 驗證沒過時或是購物車中沒產品時，無法 click -->
-                    <router-link
-                      to="/user/orderfinish"
+                    <button
                       class="btn btn-danger"
                       type="submit"
                       :disabled="
                         Object.keys(errors).length > 0 ||
                         cartData.carts.length === 0
                       "
-                      @click="sendOrder"
+                      @submit.prevent="sendOrder"
                     >
                       送出訂單
-                    </router-link>
+                    </button>
                   </div>
                 </VForm>
               </div>
@@ -245,6 +244,7 @@ export default {
           this.form.message = "";
           emitter.emit("getOrderId", this.orderId);
           emitter.emit("get-cart");
+          this.$router.push("/user/orderfinish");
         })
         .catch((err) => {
           console.log(err);

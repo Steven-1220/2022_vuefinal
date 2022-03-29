@@ -154,7 +154,7 @@
             <div class="col">
               <div class="card h-100">
                 <div class="card-body text-center">
-                  <router-link :to="`${item.id}`">
+                  <router-link :to="`${item.id}`" class="d-block">
                     <img
                       :src="item.imageUrl"
                       alt=""
@@ -165,7 +165,7 @@
                   <div class="text-center text-dark mt-2">
                     <router-link
                       :to="`${item.id}`"
-                      class="text-decoration-none"
+                      class="text-decoration-none d-block"
                       >{{ item.title }}</router-link
                     >
                   </div>
@@ -183,7 +183,7 @@
                 <div class="card-body d-flex justify-content-between">
                   <router-link
                     :to="`${item.id}`"
-                    class="btn btn-outline-primary"
+                    class="btn btn-outline-primary d-block"
                   >
                     查看產品
                   </router-link>
@@ -230,8 +230,10 @@ export default {
       loadingState: "",
       modules: [Navigation, Pagination],
       favorite: JSON.parse(localStorage.getItem("favorite")) || [],
+      id: this.$route.params.id,
     };
   },
+
   methods: {
     // 取得單一特定產品資訊
     getProductInfo() {
@@ -315,6 +317,9 @@ export default {
         localStorage.setItem("favorite", JSON.stringify(this.favorite));
       },
       deep: true,
+    },
+    id() {
+      this.getProductInfo();
     },
   },
 
