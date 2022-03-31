@@ -13,6 +13,9 @@ import { localize, setLocale } from "@vee-validate/i18n";
 import zhTW from "@vee-validate/i18n/dist/locale/zh_TW.json";
 // 自訂義方法
 import $httpMessageState from "@/libraries/pushMessageState";
+// 加入 Sweetalert2
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 import App from "./App.vue";
 import router from "./router";
 
@@ -33,6 +36,8 @@ const app = createApp(App);
 app.config.globalProperties.$httpMessageState = $httpMessageState;
 app.use(router);
 app.use(VueAxios, axios);
+// 使用 Sweetalert2
+app.use(VueSweetalert2);
 // 註冊讀取效果
 app.component("VueLoading", VueLoading);
 // 註冊表單驗證

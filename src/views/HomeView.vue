@@ -1,19 +1,23 @@
 <template>
+  <VueLoading :active="isLoading"></VueLoading>
   <Navbar></Navbar>
   <div class="wrap">
     <header
       class="main-header px-5 py-5 d-flex justify-content-center align-items-md-center"
       style="
-        background-image: url(https://images.unsplash.com/photo-1517401048338-dab23e183fbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+        background-image: url(https://images.unsplash.com/photo-1587306433556-18d035a3ed97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+        background-attachment: fixed;
       "
     >
-      <div class="text-white text-center">
-        <p class="fs-2">
-          在優閒的午後<br />
-          或豐盛的晚餐<br />
-        </p>
-        <h1 class="fw-bold">配上法式甜點</h1>
-        <p class="fs-2">讓一天充滿幸福的滋味!</p>
+      <div class="text-white text-center d-flex align-items-center">
+        <div class="special-bg p-4">
+          <p class="fs-2">
+            在優閒的午後<br />
+            或豐盛的晚餐<br />
+          </p>
+          <h1 class="fw-bold">配上法式甜點</h1>
+          <p class="fs-2">讓一天充滿幸福的滋味!</p>
+        </div>
       </div>
     </header>
 
@@ -31,7 +35,7 @@
         >
           <div class="pt-3">
             <h2 class="text-warning text-center">新鮮天然</h2>
-            <p class="lh-lg fs-4">
+            <p class="lh-lg fs-4 text-lg-light">
               使用高級的食材、健康的原物料 <br />
               無添加人工香料、色素、防腐劑 <br />
               甜點也可以健康的吃
@@ -52,7 +56,7 @@
         >
           <div class="pt-3">
             <h2 class="text-warning text-center">精心製作</h2>
-            <p class="lh-lg fs-4">
+            <p class="lh-lg fs-4 text-lg-light">
               師傅長年累積的經驗 <br />
               獨創的手藝和訣竅 <br />
               製作出層次豐富紮實的甜點
@@ -62,12 +66,12 @@
       </div>
     </section>
 
-    <section class="py-5 bg-secondary">
+    <section class="py-5 bg-warning">
       <div class="container">
-        <h2 class="text-center text-warning py-3">熱門甜點</h2>
+        <h2 class="text-center text-primary py-3">熱門甜點</h2>
 
         <swiper
-          :slides-per-view="3"
+          :slides-per-view="1"
           :space-between="50"
           :autoplay="{ delay: 2000 }"
           :modules="modules"
@@ -149,6 +153,7 @@ export default {
     return {
       products: [],
       modules: [Navigation, Pagination, Autoplay],
+      isLoading: false,
     };
   },
   methods: {
@@ -158,7 +163,7 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.products = res.data.products;
           this.isLoading = false;
         })
@@ -186,9 +191,14 @@ export default {
   transform: scale(1);
 }
 
+.special-bg {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 768px) {
   .home-special {
     background-color: white;
+    color: #000;
     opacity: 1;
   }
 }

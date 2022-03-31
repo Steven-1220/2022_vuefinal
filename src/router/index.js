@@ -44,12 +44,6 @@ const routes = [
         path: "orderfinish",
         name: "完成訂單",
         component: () => import("../views/UserOrderFinish.vue"),
-        // props: (route) => {
-        //   console.log("route:", route);
-        //   return {
-        //     orderId: route.params.orderId,
-        //   };
-        // },
       },
       {
         // 付款完成
@@ -62,9 +56,14 @@ const routes = [
         component: () => import("../views/AboutView.vue"),
       },
       {
+        // 產品組成材料
+        path: "material",
+        component: () => import("../views/MaterialView.vue"),
+      },
+      {
         // 購物須知
         path: "notice",
-        component: () => import("../views/NoticeView.vue"),
+        component: () => import("../views/ShopInfo.vue"),
       },
     ],
   },
@@ -108,7 +107,7 @@ const router = createRouter({
   linkActiveClass: "active",
   scrollBehavior(to, from, savedPosition) {
     console.log(to, from, savedPosition);
-    // 若到達的路徑符合 newPage 字串，就觸發 if 判斷式
+    // 若到達的路徑符合 product 字串，就觸發 if 判斷式
     if (to.fullPath.match("product")) {
       return {
         top: 0,

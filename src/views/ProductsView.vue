@@ -55,16 +55,6 @@
           <div class="col" v-for="item in products" :key="item.id">
             <div class="card border-0 h-100 move">
               <div class="card-body text-center position-relative">
-                <!-- <div
-                  :style="{ backgroundImage: `url(${item.imageUrl})` }"
-                  style="
-                    height: 280px;
-                    background-size: cover;
-                    background-position: center;
-                  "
-                >
-                  <router-link :to="`product/${item.id}`"></router-link>
-                </div> -->
                 <span
                   v-if="favorite.includes(item.id)"
                   class="position-absolute top-0 end-0"
@@ -155,7 +145,7 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.products = res.data.products;
           this.pagination = res.data.pagination;
           emitter.emit("get-cart");
@@ -166,25 +156,9 @@ export default {
         });
     },
 
-    // getProducts() {
-    //   this.isLoading = true;
-    //   const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`;
-    //   this.$http
-    //     .get(url)
-    //     .then((res) => {
-    //       console.log(res);
-    //       this.products = res.data.products;
-    //       emitter.emit("get-cart");
-    //       this.isLoading = false;
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.response.data);
-    //     });
-    // },
-
     // 加入購物車
     addToCart(id) {
-      this.isLoading = true;
+      // this.isLoading = true;
       const data = {
         product_id: id,
         qty: 1,
@@ -195,14 +169,31 @@ export default {
           `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`,
           { data },
         )
-        .then((res) => {
-          this.isLoading = false;
-          console.log(res);
+        .then(() => {
+          // this.isLoading = false;
+          const Toast = this.$swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", this.$swal.stopTimer);
+              toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+            },
+          });
+
+          Toast.fire({
+            icon: "success",
+            title: "成功加入購物車",
+          });
+
+          // console.log(res);
           // 觸發監聽
           emitter.emit("get-cart");
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data);
         });
     },
   },
@@ -215,10 +206,10 @@ export default {
 <style lang="scss" scoped>
 .move {
   transform: translateY(0px);
-  transition: 0.7s;
+  transition: 0.8s;
 }
 
 .move:hover {
-  transform: translateY(-30px);
+  transform: translateY(-20px);
 }
 </style>

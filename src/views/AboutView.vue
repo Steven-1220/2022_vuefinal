@@ -1,4 +1,5 @@
 <template>
+  <VueLoading :active="isLoading"></VueLoading>
   <div class="wrap bg-warning">
     <div class="container py-5">
       <h2 class="text-center pb-4">關於我們(SweetHome)</h2>
@@ -66,6 +67,22 @@ import FooterView from "@/components/FooterView.vue";
 export default {
   components: {
     FooterView,
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+  methods: {
+    LoadingEffect() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 500);
+    },
+  },
+  mounted() {
+    this.LoadingEffect();
   },
 };
 </script>

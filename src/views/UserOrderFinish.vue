@@ -1,4 +1,5 @@
 <template>
+  <VueLoading :active="isLoading"></VueLoading>
   <div class="wrap">
     <section class="pt-5">
       <div class="container">
@@ -12,13 +13,13 @@
             </div>
           </div>
           <div class="col">
-            <div class="shop-state text-center border p-3">
+            <div class="shop-state text-center border bg-warning p-3">
               <span>2</span>
               填寫訂單
             </div>
           </div>
           <div class="col">
-            <div class="shop-state text-center border p-3">
+            <div class="shop-state text-center border bg-warning p-3">
               <span>3</span>
               完成訂單
             </div>
@@ -51,9 +52,12 @@
                   </tbody>
                 </table>
               </div>
-              <!-- <div class="card-footer">
-              <p class="text-end fs-4">總價: ${{ item.total }}</p>
-            </div> -->
+              <div class="card-footer bg-primary text-white">
+                <p v-if="finalOrderPrice !== 0" class="text-end fs-4">
+                  折扣後總價: ${{ finalOrderPrice }}
+                </p>
+                <p v-else class="text-end fs-4">總價: ${{ order.total }}</p>
+              </div>
             </div>
           </div>
 
@@ -109,7 +113,7 @@
                 </table>
               </div>
 
-              <div class="card-footer d-flex justify-content-end">
+              <div class="card-footer d-flex justify-content-end bg-primary">
                 <router-link
                   to="/user/pay"
                   class="btn btn-danger"
@@ -145,25 +149,35 @@ export default {
       products: {},
       isLoading: false,
       orderId: "",
+      finalOrderPrice: 0,
     };
   },
 
   methods: {
     //取得訂單
     getOrder(orderId) {
+      this.isLoading = true;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order/${orderId}`;
       this.$http
         .get(url)
         .then((res) => {
           // console.log(res);
           this.order = res.data.order;
-          // console.log(this.order);
           this.products = res.data.order.products;
-          console.log("products", this.products);
+          this.isLoading = false;
           // console.log("values", Object.values(this.products));
+
+          // 若有使用優惠券總價格做以下處理
+          let finalPrice = 0;
+          Object.values(this.products).forEach((item) => {
+            item.total - item.final_total;
+            finalPrice += item.total - item.final_total;
+          });
+
+          this.finalOrderPrice = finalPrice;
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data);
         });
     },
     // 取得購物車列表資訊
@@ -172,10 +186,9 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.cartData = res.data.data;
           emitter.emit("get-cart");
-          // console.log(this.cartData);
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -189,8 +202,6 @@ export default {
         .post(url)
         .then((res) => {
           console.log(res);
-          emitter.emit("get-cart");
-          // console.log(this.cartData);
         })
         .catch((err) => {
           console.log(err.response.data);

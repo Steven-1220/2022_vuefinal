@@ -1,6 +1,6 @@
 <template>
   <nav id="nav-top" class="navbar navbar-expand-lg pt-4">
-    <div class="container-md">
+    <div class="container">
       <router-link class="navbar-brand fs-2" to="/">
         <i class="bi bi-balloon-heart-fill"></i> SweetHome 經典法式甜點
       </router-link>
@@ -16,13 +16,21 @@
         <span class="navbar-toggler-icon"><i class="bi bi-list fs-2"></i></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto fs-5">
+        <ul class="navbar-nav ms-auto fs-5 text-nowrap">
           <li class="nav-item mx-2">
             <router-link
               class="nav-link active underline-effect"
               aria-current="page"
               to="/user/about"
               >關於我們</router-link
+            >
+          </li>
+          <li class="nav-item mx-2">
+            <router-link
+              class="nav-link active underline-effect"
+              aria-current="page"
+              to="/user/material"
+              >原料與組成</router-link
             >
           </li>
           <li class="nav-item mx-2">
@@ -73,7 +81,7 @@ export default {
         .then((res) => {
           // console.log("getCart", res);
           this.cartData = res.data.data;
-          console.log(this.cartData);
+          // console.log(this.cartData);
         })
         .catch((err) => {
           console.log(err);

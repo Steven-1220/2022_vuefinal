@@ -1,4 +1,5 @@
 <template>
+  <VueLoading :active="isLoading"></VueLoading>
   <div class="wrap">
     <div class="container mt-5">
       <h2 class="text-center">購物須知</h2>
@@ -32,6 +33,16 @@
             訂單完成並成功付款後，商品將於5日內(含假日)送到您的指定地點
           </p>
         </div>
+        <div class="col-12">
+          <h4>
+            <span class="text-primary"><i class="bi bi-circle-fill"></i></span
+            >有哪些付款方式呢?
+          </h4>
+          <p class="fs-5">
+            我們提供信用卡付款、ATM
+            轉帳、超商取貨付款，可以依據您的付款習慣做選擇。
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -43,6 +54,22 @@ import FooterView from "@/components/FooterView.vue";
 export default {
   components: {
     FooterView,
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+  methods: {
+    LoadingEffect() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 500);
+    },
+  },
+  mounted() {
+    this.LoadingEffect();
   },
 };
 </script>

@@ -38,7 +38,7 @@
                   <button
                     class="btn btn-outline-warning"
                     type="button"
-                    @click="deleteAllCartItem"
+                    @click="confirmDeleteAllCart"
                     :disabled="cartData.carts.length === 0"
                   >
                     清空購物車
@@ -119,7 +119,7 @@
           </div>
         </div>
 
-        <div class="row justify-content-between">
+        <div class="row justify-content-between pb-3">
           <div class="col-md-5">
             <div class="input-group mb-3">
               <input
@@ -172,7 +172,6 @@ export default {
   methods: {
     // 取得購物車列表資訊
     getCartList() {
-      this.isLoading = true;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;
       this.$http
         .get(url)
@@ -180,7 +179,6 @@ export default {
           // console.log(res);
           this.cartData = res.data.data;
           console.log(this.cartData);
-          this.isLoading = false;
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -206,6 +204,22 @@ export default {
         .put(url, { data })
         .then(() => {
           // console.log(res);
+          const Toast = this.$swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", this.$swal.stopTimer);
+              toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+            },
+          });
+
+          Toast.fire({
+            icon: "success",
+            title: "已產品變更數量",
+          });
           // 再取得購物車列表
           this.getCartList();
           this.loadingState = "";
@@ -234,9 +248,30 @@ export default {
           console.log(err.response.data);
         });
     },
+
+    // 確認是否要刪除購物車全部產品
+    confirmDeleteAllCart() {
+      this.$swal
+        .fire({
+          title: "確定是否刪除購物車全部商品",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3C3F5F",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "確定",
+          cancelButtonText: "取消",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.deleteAllCartItem();
+            this.$swal.fire("已全部刪除購物車商品", "", "success");
+          }
+        });
+    },
+
     //清空全部購物車產品
     deleteAllCartItem() {
-      this.isLoading = true;
+      // this.isLoading = true;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`;
       this.$http
         .delete(url)
@@ -245,7 +280,8 @@ export default {
           // 再取得購物車列表
           this.getCartList();
           emitter.emit("get-cart");
-          this.isLoading = false;
+
+          // this.isLoading = false;
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -270,10 +306,17 @@ export default {
           alert("折扣碼失效");
         });
     },
+    LoadingEffect() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 500);
+    },
   },
 
   mounted() {
     this.getCartList();
+    this.LoadingEffect();
   },
 };
 </script>

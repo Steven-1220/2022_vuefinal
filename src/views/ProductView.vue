@@ -1,4 +1,5 @@
 <template>
+  <VueLoading :active="isLoading"></VueLoading>
   <div class="container">
     <div class="row mb-4">
       <div class="col-md-6">
@@ -114,12 +115,14 @@
           </div>
         </div>
         <div class="col-md-6">
-          <img
-            src="https://images.pexels.com/photos/6479588/pexels-photo-6479588.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-            class="img-fluid d-none d-md-block"
-            style="height: 400px object-fit: cover"
-            alt=""
-          />
+          <div
+            style="
+              background-image: url(https://images.pexels.com/photos/6479588/pexels-photo-6479588.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+              background-position: center center;
+              background-size: cover;
+            "
+            class="h-100 d-none d-md-block"
+          ></div>
         </div>
       </div>
     </div>
@@ -228,6 +231,7 @@ export default {
       products: [],
       quantity: 1,
       loadingState: "",
+      isLoading: false,
       modules: [Navigation, Pagination],
       favorite: JSON.parse(localStorage.getItem("favorite")) || [],
       id: "",
@@ -238,19 +242,21 @@ export default {
     // 取得單一特定產品資訊
     getProductInfo() {
       // $router -> 方法 ，$route -> 物件
-      console.log(this.$route);
+      this.isLoading = true;
+      // console.log(this.$route);
       const id = this.$route.params.id;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`;
       this.$http
         .get(url)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.product = res.data.product;
           // 再取得同一種類產品
           this.getProduct(this.product.category);
+          this.isLoading = false;
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data);
         });
     },
     // 加入購物車
@@ -265,9 +271,24 @@ export default {
           `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`,
           { data },
         )
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           this.loadingState = "";
+          const Toast = this.$swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", this.$swal.stopTimer);
+              toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+            },
+          });
+
+          Toast.fire({
+            icon: "success",
+            title: "成功加入購物車",
+          });
           // 觸發監聽
           emitter.emit("get-cart");
           // 加入購物車後重置數量
@@ -276,7 +297,7 @@ export default {
           }, 1000);
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data);
         });
     },
 
@@ -286,9 +307,8 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.products = res.data.products;
-          // emitter.emit("get-cart");
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -309,6 +329,18 @@ export default {
       }
       console.log(this.favorite);
     },
+    // 確認數量最少為 1
+    confirmNum(num) {
+      if (!/(^[1-9]\d*$)/.test(num)) {
+        this.quantity = 1;
+        this.$swal.fire({
+          icon: "error",
+          title: "糟糕",
+          text: "數量最少要 1 喔",
+          confirmButtonColor: "#3C3F5F",
+        });
+      }
+    },
   },
   // favorite  是陣列，使用深層監聽，當 favorite 有變動則寫入
   watch: {
@@ -321,6 +353,9 @@ export default {
     $route(to) {
       this.id = to.params.id;
       this.getProductInfo();
+    },
+    quantity() {
+      this.confirmNum(this.quantity);
     },
   },
 

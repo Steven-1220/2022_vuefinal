@@ -12,7 +12,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="shop-state text-center border p-3">
+            <div class="shop-state text-center border bg-warning p-3">
               <span>2</span>
               填寫訂單
             </div>
@@ -123,7 +123,7 @@
                       class="form-control"
                       :class="{ 'is-invalid': errors['電話'] }"
                       placeholder="請輸入電話"
-                      rules="min:8|max:10|required"
+                      :rules="isPhone"
                       v-model="form.user.tel"
                     ></VField>
                     <ErrorMessage
@@ -247,7 +247,7 @@ export default {
           emitter.emit("get-cart");
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data);
         });
     },
     // 取得購物車列表資訊
@@ -256,12 +256,17 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.cartData = res.data.data;
         })
         .catch((err) => {
           console.log(err.response.data);
         });
+    },
+    // 電話驗證
+    isPhone(value) {
+      const phoneNumber = /^(09)[0-9]{8}$/;
+      return phoneNumber.test(value) ? true : "請輸入正確的電話號碼";
     },
     LoadingEffect() {
       this.isLoading = true;
