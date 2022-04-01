@@ -3,7 +3,7 @@
   <Navbar></Navbar>
   <div class="wrap">
     <header
-      class="main-header px-5 py-5 d-flex justify-content-center align-items-md-center"
+      class="container-fluid main-header px-5 py-5 d-flex justify-content-center align-items-md-center"
       style="
         background-image: url(https://images.unsplash.com/photo-1587306433556-18d035a3ed97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
         background-attachment: fixed;
@@ -21,46 +21,48 @@
       </div>
     </header>
 
-    <section class="container py-4">
-      <div class="row mb-4 g-md-0">
-        <div class="col-md-6">
-          <img
-            src="https://images.unsplash.com/photo-1604514813549-92e26bbae4f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-            class="w-100"
-            alt=""
-          />
-        </div>
-        <div
-          class="col-md-6 d-flex justify-content-center align-items-center home-special"
-        >
-          <div class="pt-3">
-            <h2 class="text-warning text-center">新鮮天然</h2>
-            <p class="lh-lg fs-4 text-lg-light">
-              使用高級的食材、健康的原物料 <br />
-              無添加人工香料、色素、防腐劑 <br />
-              甜點也可以健康的吃
-            </p>
+    <section class="py-4">
+      <div class="container">
+        <div class="row mb-4 g-md-0">
+          <div class="col-md-6">
+            <img
+              src="https://images.unsplash.com/photo-1604514813549-92e26bbae4f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+              class="w-100"
+              alt=""
+            />
+          </div>
+          <div
+            class="col-md-6 d-flex justify-content-center align-items-center home-special"
+          >
+            <div class="pt-3">
+              <h2 class="text-warning text-center">新鮮天然</h2>
+              <p class="lh-lg fs-4 text-lg-light">
+                使用高級的食材、健康的原物料 <br />
+                無添加人工香料、色素、防腐劑 <br />
+                甜點也可以健康的吃
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row g-md-0 flex-md-row-reverse">
-        <div class="col-md-6">
-          <img
-            src="https://images.unsplash.com/photo-1519733870-f96bef9bc85f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"
-            class="w-100"
-            alt=""
-          />
-        </div>
-        <div
-          class="col-md-6 d-flex justify-content-center align-items-center home-special"
-        >
-          <div class="pt-3">
-            <h2 class="text-warning text-center">精心製作</h2>
-            <p class="lh-lg fs-4 text-lg-light">
-              師傅長年累積的經驗 <br />
-              獨創的手藝和訣竅 <br />
-              製作出層次豐富紮實的甜點
-            </p>
+        <div class="row g-md-0 flex-md-row-reverse">
+          <div class="col-md-6">
+            <img
+              src="https://images.unsplash.com/photo-1519733870-f96bef9bc85f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"
+              class="w-100"
+              alt=""
+            />
+          </div>
+          <div
+            class="col-md-6 d-flex justify-content-center align-items-center home-special"
+          >
+            <div class="pt-3">
+              <h2 class="text-warning text-center">精心製作</h2>
+              <p class="lh-lg fs-4 text-lg-light">
+                師傅長年累積的經驗 <br />
+                獨創的手藝和訣竅 <br />
+                製作出層次豐富紮實的甜點
+              </p>
+            </div>
           </div>
         </div>
       </div>

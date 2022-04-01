@@ -1,25 +1,29 @@
 <template>
   <footer class="bg-primary text-white py-4">
     <div class="container">
-      <p class="text-center">本網站僅供個人作品使用</p>
-      <ul
-        class="list-unstyled d-flex justify-content-center align-items-center"
-      >
-        <li class="fs-3 px-3">
-          <a href="#" class="link-light"><i class="bi bi-instagram"></i></a>
-        </li>
-        <li class="fs-3 px-3">
-          <a href="#" class="link-light"><i class="bi bi-facebook"></i></a>
-        </li>
-        <li class="fs-3 px-3">
-          <a href="#" class="link-light"><i class="bi bi-github"></i></a>
-        </li>
-        <li class="px-3 fs-5">
-          <router-link class="link-light ps-5 text-decoration-none" to="/login"
-            >後台登入</router-link
+      <div class="row">
+        <div class="col-12">
+          <p class="text-center">本網站僅供個人作品使用</p>
+          <ul
+            class="list-unstyled d-flex justify-content-center align-items-center"
           >
-        </li>
-      </ul>
+            <li class="fs-3 px-3">
+              <a href="#" class="link-light"><i class="bi bi-instagram"></i></a>
+            </li>
+            <li class="fs-3 px-3">
+              <a href="#" class="link-light"><i class="bi bi-facebook"></i></a>
+            </li>
+            <li class="fs-3 px-3">
+              <a href="#" class="link-light"><i class="bi bi-github"></i></a>
+            </li>
+          </ul>
+          <div class="text-center">
+            <router-link class="link-light text-decoration-none" to="/login"
+              >後台登入</router-link
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 

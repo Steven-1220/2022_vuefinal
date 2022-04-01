@@ -1,8 +1,14 @@
 <template>
   <nav id="nav-top" class="navbar navbar-expand-lg pt-4">
     <div class="container">
-      <router-link class="navbar-brand fs-2" to="/">
-        <i class="bi bi-balloon-heart-fill"></i> SweetHome 經典法式甜點
+      <router-link
+        class="navbar-brand fs-2 me-0"
+        style="white-space: normal"
+        to="/"
+      >
+        <i class="bi bi-balloon-heart-fill"></i> SweetHome
+        <br class="d-block d-sm-none" />
+        經典法式甜點
       </router-link>
       <button
         class="navbar-toggler bg-primary text-white"

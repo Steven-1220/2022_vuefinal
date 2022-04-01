@@ -2,7 +2,7 @@
   <VueLoading :active="isLoading"></VueLoading>
 
   <header
-    class="main-header px-5 py-5 mb-5 d-flex justify-content-center align-items-md-center"
+    class="container-fluid main-header px-5 py-5 mb-5 d-flex justify-content-center align-items-md-center"
     style="
       background-image: url(https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?cs=srgb&dl=pexels-pixabay-45202.jpg&fm=jpg);
       height: 450px;
