@@ -37,26 +37,28 @@
             <div class="card">
               <div class="card-header fs-4 bg-primary text-white">訂單內容</div>
               <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>產品名稱</th>
-                      <th>數量</th>
-                      <th>價格</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-nowrap">
-                    <tr v-for="item in cartData.carts" :key="item.id">
-                      <td scope="row">{{ item.product.title }}</td>
-                      <td width="20%">
-                        {{ item.qty }}
-                      </td>
-                      <td width="30%">
-                        $ {{ item.product.price }}/ {{ item.product.unit }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>產品名稱</th>
+                        <th>數量</th>
+                        <th>價格</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-nowrap">
+                      <tr v-for="item in cartData.carts" :key="item.id">
+                        <td scope="row">{{ item.product.title }}</td>
+                        <td width="20%">
+                          {{ item.qty }}
+                        </td>
+                        <td width="30%">
+                          $ {{ item.product.price }}/ {{ item.product.unit }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div class="card-footer bg-primary text-white">
                 <p class="text-end">總價 : ${{ cartData.total }}</p>

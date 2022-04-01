@@ -43,7 +43,7 @@
 
         <div class="row justify-content-center py-5">
           <div class="col-md-6">
-            <div class="text-nowrap text-center">
+            <div class="text-center d-flex justify-content-center">
               <router-link to="/" class="btn btn-primary me-3"
                 >回首頁</router-link
               >
