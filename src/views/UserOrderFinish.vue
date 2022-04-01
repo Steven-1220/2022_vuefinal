@@ -67,50 +67,54 @@
                 您的收件資訊
               </div>
               <div class="card-body">
-                <table class="table">
-                  <tbody class="text-nowrap">
-                    <tr>
-                      <td>訂單時間</td>
-                      <td>
-                        {{
-                          new Date(order.create_at * 1000).toLocaleDateString()
-                        }}
-                      </td>
-                    </tr>
-                    <tr class="text-wrap">
-                      <td>訂單編號</td>
-                      <td>{{ order.id }}</td>
-                    </tr>
-                    <tr>
-                      <td>收件人</td>
-                      <td>{{ order.user.name }}</td>
-                    </tr>
-                    <tr>
-                      <td>電話</td>
-                      <td>{{ order.user.tel }}</td>
-                    </tr>
-                    <tr>
-                      <td>email</td>
-                      <td>{{ order.user.email }}</td>
-                    </tr>
-                    <tr>
-                      <td>取貨地點</td>
-                      <td>{{ order.user.address }}</td>
-                    </tr>
-                    <tr>
-                      <td>付款方式</td>
-                      <td>{{ order.user.payment }}</td>
-                    </tr>
-                    <tr>
-                      <td>備註</td>
-                      <td>good</td>
-                    </tr>
-                    <tr>
-                      <td>付款狀態</td>
-                      <td v-if="!order.is_paid">尚未付款</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody class="text-nowrap">
+                      <tr>
+                        <td>訂單時間</td>
+                        <td>
+                          {{
+                            new Date(
+                              order.create_at * 1000,
+                            ).toLocaleDateString()
+                          }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>訂單編號</td>
+                        <td>{{ order.id }}</td>
+                      </tr>
+                      <tr>
+                        <td>收件人</td>
+                        <td>{{ order.user.name }}</td>
+                      </tr>
+                      <tr>
+                        <td>電話</td>
+                        <td>{{ order.user.tel }}</td>
+                      </tr>
+                      <tr>
+                        <td>email</td>
+                        <td>{{ order.user.email }}</td>
+                      </tr>
+                      <tr>
+                        <td>取貨地點</td>
+                        <td>{{ order.user.address }}</td>
+                      </tr>
+                      <tr>
+                        <td>付款方式</td>
+                        <td>{{ order.user.payment }}</td>
+                      </tr>
+                      <tr>
+                        <td>備註</td>
+                        <td>good</td>
+                      </tr>
+                      <tr>
+                        <td>付款狀態</td>
+                        <td v-if="!order.is_paid">尚未付款</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               <div class="card-footer d-flex justify-content-end bg-primary">

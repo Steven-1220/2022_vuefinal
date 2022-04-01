@@ -46,76 +46,78 @@
                 </div>
               </div>
               <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <tr class="align-middle">
-                      <th scope="col"></th>
-                      <th scope="col" class="text-wrap" style="width: 25%">
-                        產品名稱
-                      </th>
-                      <th scope="col" style="width: 25%">數量</th>
-                      <th scope="col">單位</th>
-                      <th class="text-center" scope="col">價格</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-nowrap">
-                    <tr v-for="item in cartData.carts" :key="item.id">
-                      <td>
-                        <!-- 刪除特定購物車產品按鈕 -->
-                        <button
-                          type="button"
-                          class="btn btn-danger btn-sm"
-                          :disabled="loadingState === item.id"
-                          @click="removeCartItem(item.id)"
-                        >
-                          <i class="bi bi-x-lg"></i>
-                        </button>
-                      </td>
-                      <td scope="row">
-                        {{ item.product.title }}
-                        <div class="text-success" v-if="item.coupon">
-                          已套用優惠券
-                        </div>
-                      </td>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr class="align-middle">
+                        <th scope="col"></th>
+                        <th scope="col" class="text-wrap" style="width: 25%">
+                          產品名稱
+                        </th>
+                        <th scope="col" style="width: 30%">數量</th>
+                        <th scope="col">單位</th>
+                        <th class="text-center" scope="col">價格</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-nowrap">
+                      <tr v-for="item in cartData.carts" :key="item.id">
+                        <td>
+                          <!-- 刪除特定購物車產品按鈕 -->
+                          <button
+                            type="button"
+                            class="btn btn-danger btn-sm"
+                            :disabled="loadingState === item.id"
+                            @click="removeCartItem(item.id)"
+                          >
+                            <i class="bi bi-x-lg"></i>
+                          </button>
+                        </td>
+                        <td scope="row">
+                          {{ item.product.title }}
+                          <div class="text-success" v-if="item.coupon">
+                            已套用優惠券
+                          </div>
+                        </td>
 
-                      <td>
-                        <input
-                          min="1"
-                          type="number"
-                          class="form-control"
-                          v-model.number="item.qty"
-                          :disabled="loadingState === item.id"
-                          @change="updateCartNumber(item)"
-                        />
-                      </td>
-                      <td>
-                        <span>{{ item.product.unit }}</span>
-                      </td>
-                      <td class="text-center">
-                        <div v-if="item.final_total !== item.total">
-                          <small class="text-success">折扣價：</small>
-                          {{ item.total - item.final_total }}
-                        </div>
-                        <div v-else>
-                          {{ item.final_total }}
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
+                        <td>
+                          <input
+                            min="1"
+                            type="number"
+                            class="form-control"
+                            v-model.number="item.qty"
+                            :disabled="loadingState === item.id"
+                            @change="updateCartNumber(item)"
+                          />
+                        </td>
+                        <td>
+                          <span>{{ item.product.unit }}</span>
+                        </td>
+                        <td class="text-center">
+                          <div v-if="item.final_total !== item.total">
+                            <small class="text-success">折扣價：</small>
+                            {{ item.total - item.final_total }}
+                          </div>
+                          <div v-else>
+                            {{ item.final_total }}
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
 
-                  <tfoot>
-                    <tr>
-                      <td colspan="4" class="text-end">總計</td>
-                      <td class="text-end">{{ cartData.total }}</td>
-                    </tr>
-                    <tr v-if="cartData.final_total !== cartData.total">
-                      <td colspan="4" class="text-end">折扣後價格</td>
-                      <td class="text-end text-danger">
-                        {{ cartData.total - cartData.final_total }}
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
+                    <tfoot>
+                      <tr>
+                        <td colspan="4" class="text-end">總計</td>
+                        <td class="text-end">{{ cartData.total }}</td>
+                      </tr>
+                      <tr v-if="cartData.final_total !== cartData.total">
+                        <td colspan="4" class="text-end">折扣後價格</td>
+                        <td class="text-end text-danger">
+                          {{ cartData.total - cartData.final_total }}
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

@@ -3,17 +3,20 @@
   <div class="wrap bg-warning">
     <div class="container py-5">
       <h2 class="text-center pb-4">關於我們(SweetHome)</h2>
-      <div class="row">
-        <div class="col-12 d-flex justify-content-center align-items-center">
+      <div class="row justify-content-center">
+        <div
+          class="col-md-12 col-lg-6 d-flex justify-content-center align-items-center"
+        >
           <img
             src="https://images.pexels.com/photos/3740196/pexels-photo-3740196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             alt=""
-            style="width: 50%; height: 70%; object-fit: cover"
+            style="height: 70%; object-fit: cover"
+            class="img-fluid w-md-50 w-sm-100"
           />
         </div>
       </div>
     </div>
-    <div class="container py-5">
+    <div class="container pb-5">
       <div class="row mb-5">
         <div class="col d-flex flex-column mw-100 align-items-center">
           <div class="fs-5">
