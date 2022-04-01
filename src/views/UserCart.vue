@@ -50,8 +50,10 @@
                   <thead>
                     <tr class="align-middle">
                       <th scope="col"></th>
-                      <th scope="col">產品名稱</th>
-                      <th scope="col" style="width: 150px">數量</th>
+                      <th scope="col" class="text-wrap" style="width: 25%">
+                        產品名稱
+                      </th>
+                      <th scope="col" style="width: 25%">數量</th>
                       <th scope="col">單位</th>
                       <th class="text-center" scope="col">價格</th>
                     </tr>

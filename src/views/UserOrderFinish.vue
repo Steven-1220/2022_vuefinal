@@ -77,7 +77,7 @@
                         }}
                       </td>
                     </tr>
-                    <tr>
+                    <tr class="text-wrap">
                       <td>訂單編號</td>
                       <td>{{ order.id }}</td>
                     </tr>
