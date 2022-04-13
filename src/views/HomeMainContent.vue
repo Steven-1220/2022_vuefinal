@@ -44,11 +44,11 @@
             </div>
 
             <div
-              class="search-list d-flex justify-content-center"
               :class="{ active: isActive }"
+              class="search-list d-flex justify-content-center"
               style="max-height: 80px"
             >
-              <ul class="d-flex list-unstyled flex-column w-51 overflow-auto">
+              <ul class="list-unstyled flex-column w-51 overflow-auto">
                 <li v-for="item in filterProducts" :key="item.id">
                   <RouterLink
                     :to="`/user/product/${item.id}`"
@@ -240,17 +240,26 @@ export default {
       isLoading: false,
       search: "",
       isActive: false,
-      // filterProducts: [],
       email: "",
+      searchListShow: false,
     };
   },
   computed: {
     filterProducts() {
       let regWord = new RegExp(this.search, "g");
       return this.products.filter((item) => {
-        this.isActive = true;
         return item.title.match(regWord);
       });
+    },
+  },
+
+  watch: {
+    search() {
+      if (this.search == "") {
+        this.isActive = false;
+      } else {
+        this.isActive = true;
+      }
     },
   },
   // watch: {
@@ -352,17 +361,5 @@ export default {
     color: #000;
     opacity: 1;
   }
-}
-</style>
-
-<style scoped>
-.swiper-button-prev {
-  left: -2px !important;
-  right: auto;
-}
-
-.swiper-button-next {
-  right: -2px !important;
-  left: auto;
 }
 </style>
