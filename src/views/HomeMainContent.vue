@@ -26,6 +26,8 @@
       </div>
     </header>
 
+    <UserDiscount></UserDiscount>
+
     <section class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-12 col-md-6">
@@ -225,12 +227,15 @@ import { Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
+import UserDiscount from "@/components/UserDiscount.vue";
 import emitter from "@/libraries/emitter";
 
 export default {
   components: {
     Swiper,
     SwiperSlide,
+    UserDiscount,
   },
 
   data() {
@@ -241,7 +246,6 @@ export default {
       search: "",
       isActive: false,
       email: "",
-      searchListShow: false,
     };
   },
   computed: {
@@ -262,20 +266,6 @@ export default {
       }
     },
   },
-  // watch: {
-  //   search: {
-  //     handler() {
-  //       let regWord = new RegExp(this.search, "g");
-
-  //       let filterProducts = this.products.filter((item) => {
-  //         this.isActive = true;
-  //         return item.title.match(regWord);
-  //       });
-  //       return (this.filterProducts = filterProducts);
-  //     },
-  //     deep: true,
-  //   },
-  // },
 
   methods: {
     getProducts() {

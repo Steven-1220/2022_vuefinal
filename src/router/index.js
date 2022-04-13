@@ -27,13 +27,12 @@ const routes = [
           {
             // 產品列表
             path: "products",
-            // name: "products",
+            name: "產品列表",
             component: () => import("../views/ProductsView.vue"),
           },
           {
             //個別產品資訊
             path: "product/:id",
-            // name: "product",
             component: () => import("../views/ProductView.vue"),
           },
           {
