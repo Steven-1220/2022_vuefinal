@@ -111,7 +111,7 @@
                       </tr>
                       <tr>
                         <td>備註</td>
-                        <td>good</td>
+                        <td>{{ order.message }}</td>
                       </tr>
                       <tr>
                         <td>付款狀態</td>
@@ -123,11 +123,11 @@
               </div>
 
               <div class="card-footer d-flex justify-content-end bg-primary">
-                <router-link
+                <RouterLink
                   to="/user/pay"
                   class="btn btn-danger"
                   @click="payOrder()"
-                  >確認付款</router-link
+                  >確認付款</RouterLink
                 >
               </div>
             </div>
@@ -136,16 +136,12 @@
       </div>
     </section>
   </div>
-  <FooterView></FooterView>
 </template>
 
 <script>
 import emitter from "@/libraries/emitter";
-import FooterView from "@/components/FooterView.vue";
+
 export default {
-  components: {
-    FooterView,
-  },
   data() {
     return {
       cartData: {
@@ -170,11 +166,9 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res);
           this.order = res.data.order;
           this.products = res.data.order.products;
           this.isLoading = false;
-          // console.log("values", Object.values(this.products));
 
           // 若有使用優惠券總價格做以下處理
           let finalPrice = 0;
@@ -195,9 +189,9 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res);
           this.cartData = res.data.data;
           emitter.emit("get-cart");
+          emitter.emit("toggle-menu");
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -209,9 +203,7 @@ export default {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${orderId}`;
       this.$http
         .post(url)
-        .then((res) => {
-          console.log(res);
-        })
+        .then(() => {})
         .catch((err) => {
           console.log(err.response.data);
         });
@@ -219,7 +211,6 @@ export default {
   },
   mounted() {
     this.getCartList();
-
     this.getOrder(this.$route.query.id);
   },
 };

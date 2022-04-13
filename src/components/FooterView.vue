@@ -18,8 +18,8 @@
             </li>
           </ul>
           <div class="text-center">
-            <router-link class="link-light text-decoration-none" to="/login"
-              >後台登入</router-link
+            <RouterLink class="link-light text-decoration-none" to="/login"
+              >後台登入</RouterLink
             >
           </div>
         </div>

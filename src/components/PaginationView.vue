@@ -34,11 +34,14 @@
 </template>
 
 <script>
+import emitter from "@/libraries/emitter";
+
 export default {
   props: ["pages"],
   methods: {
     emitChangePage(item) {
       this.$emit("emit-get-page", item);
+      emitter.emit("toggle-menu");
     },
   },
 };

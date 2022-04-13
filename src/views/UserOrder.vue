@@ -39,7 +39,7 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <thead>
+                    <thead class="text-nowrap">
                       <tr>
                         <th>產品名稱</th>
                         <th>數量</th>
@@ -81,7 +81,9 @@
                   @submit="sendOrder"
                 >
                   <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label"
+                      ><span class="text-danger">＊</span>Email</label
+                    >
                     <VField
                       id="email"
                       name="email"
@@ -99,7 +101,9 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="name" class="form-label">收件人姓名</label>
+                    <label for="name" class="form-label"
+                      ><span class="text-danger">＊</span>收件人姓名</label
+                    >
                     <VField
                       id="name"
                       name="姓名"
@@ -117,7 +121,9 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="tel" class="form-label">收件人電話</label>
+                    <label for="tel" class="form-label"
+                      ><span class="text-danger">＊</span>收件人電話</label
+                    >
                     <VField
                       id="tel"
                       name="電話"
@@ -135,7 +141,9 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="address" class="form-label">收件人地址</label>
+                    <label for="address" class="form-label"
+                      ><span class="text-danger">＊</span>收件人地址</label
+                    >
                     <VField
                       id="address"
                       name="地址"
@@ -153,7 +161,9 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="payment" class="form-label">付款方式</label>
+                    <label for="payment" class="form-label"
+                      ><span class="text-danger">＊</span>付款方式</label
+                    >
                     <VField
                       class="form-select mb-3"
                       id="payment"
@@ -185,11 +195,11 @@
                     ></textarea>
                   </div>
                   <div class="text-end">
-                    <!-- 驗證沒過時無法 click -->
+                    <!-- 驗證沒過時或送出訂單暫時無法 click -->
                     <button
                       type="submit"
                       class="btn btn-danger"
-                      :disabled="Object.keys(errors).length > 0"
+                      :disabled="Object.keys(errors).length > 0 || loadingState"
                     >
                       送出訂單
                     </button>
@@ -202,16 +212,12 @@
       </div>
     </section>
   </div>
-  <FooterView></FooterView>
 </template>
 
 <script>
 import emitter from "@/libraries/emitter";
-import FooterView from "@/components/FooterView.vue";
+
 export default {
-  components: {
-    FooterView,
-  },
   data() {
     return {
       cartData: {
@@ -228,6 +234,7 @@ export default {
         message: "",
       },
       isLoading: false,
+      loadingState: false,
       orderId: "",
     };
   },
@@ -236,14 +243,15 @@ export default {
     //送出訂單
     sendOrder() {
       const order = this.form;
-      // console.log(order);
+
+      this.loadingState = true;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`;
       this.$http
         .post(url, { data: order })
         .then((res) => {
           this.orderId = res.data.orderId;
-          // console.log(this.orderId);
-          // this.$refs.form.resetForm();
+
+          this.loadingState = false;
           this.form.message = "";
           this.$router.push({ name: "完成訂單", query: { id: this.orderId } });
           emitter.emit("get-cart");
@@ -258,8 +266,8 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res);
           this.cartData = res.data.data;
+          emitter.emit("toggle-menu");
         })
         .catch((err) => {
           console.log(err.response.data);

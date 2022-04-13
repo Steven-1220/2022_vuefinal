@@ -6,8 +6,8 @@
       <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center">
           <img
-            src="https://images.unsplash.com/photo-1572978577765-462b91a7f9e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-            alt=""
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649521885012.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=MK9uBKlEUMhkEaOY2AA4MU94cVQ9OdC9sWiscp4kcVsldgVx5tewIEr3nSeZxdK8OHkaJz%2FO%2F9I3YBrM0quAsy90efhV4BKkE9xHhC9zuzxfPxmAx4JekUjgrHEphUxKKv3DB0HdLD1CoS4lRKzTwUJBBs2bNh6ckGOlrxAUKqGNX1n8E6zV67zhgVASMS8fUo2Q%2FBf811ivyntf4lv55%2BIaz%2Frtu5kUEu7sWE0kRBs2NMrKi5qWmytlKI3ELfiQNvKiJ9uJAMpUin%2FllfF%2F0VqQ16Q1pb69dhuUp9FyMTyTeT5HIIXfAcbuAc4v0cjpDemezYZXLgSHiosppJa74Q%3D%3D"
+            alt="購物須知"
             style="width: 50%; height: 70%; object-fit: cover"
           />
         </div>
@@ -46,15 +46,12 @@
       </div>
     </div>
   </div>
-  <FooterView></FooterView>
 </template>
 
 <script>
-import FooterView from "@/components/FooterView.vue";
+import emitter from "@/libraries/emitter";
+
 export default {
-  components: {
-    FooterView,
-  },
   data() {
     return {
       isLoading: false,
@@ -70,6 +67,7 @@ export default {
   },
   mounted() {
     this.LoadingEffect();
+    emitter.emit("toggle-menu");
   },
 };
 </script>

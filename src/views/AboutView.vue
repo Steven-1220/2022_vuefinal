@@ -8,8 +8,8 @@
           class="col-md-12 col-lg-6 d-flex justify-content-center align-items-center"
         >
           <img
-            src="https://images.pexels.com/photos/3740196/pexels-photo-3740196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-            alt=""
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649521387733.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=YGnhh9tGIa3NY%2BLB8H7uCF2O6HENoAOW%2FQJ8NXtCca4PDjA41zLGDl0WIuoyJjZ7MkzycgkTGXNtyj66NFhBKmDxWXiNVlJp80tq3sqSxE9zbdodRouQRIbF8Qw3tioP7Rou8yOKi2hjhg88I0pMbE%2BvPkz2oTbzT8QcewpbOCZd1MOQ0pY85Da44kCmnhct44HSg%2Bh5rY7zEfsCUryh0RUSTuAiaIP6ryJV93zIgkri688obLrJS4VDD8Hq4DILa%2FIEOAaDcBA6oAWMoRciQdLiZQaXiZSQgL6MeazUcaC2Z6K97GGPDLJBlSy4s11gnGFcR1QBql1dB0KaYILUyQ%3D%3D"
+            alt="關於我們"
             style="height: 70%; object-fit: cover"
             class="img-fluid w-md-50 w-sm-100"
           />
@@ -26,7 +26,7 @@
           </div>
           <div class="fs-5">
             <p>
-              幾個在餐飲學院畢業的年輕人，並在知名飯店餐廳由學徒做起，對於法式甜點有滿滿的興趣，常常向糕點師傅請教討論製作方法，對每一道甜點都是包覆了需多熱情，製作出除了外型討喜且吸引人的甜點，美味程度和口感更是這些甜點的靈魂。這幾位年輕人希望藉由這些甜點，帶給大家法式甜點的幸福
+              幾個在餐飲學院畢業的年輕人，並在知名飯店餐廳由學徒做起，對於法式甜點有滿滿的興趣，常常向糕點師傅請教討論製作方法，對每一道甜點都是包覆了需多熱情，製作出除了外型討喜且吸引人的甜點，美味程度和口感更是這些甜點的靈魂。這幾位年輕人希望藉由這些甜點，帶給大家法式甜點的幸福。
             </p>
           </div>
         </div>
@@ -62,15 +62,10 @@
       </div>
     </div>
   </div>
-  <FooterView></FooterView>
 </template>
 
 <script>
-import FooterView from "@/components/FooterView.vue";
 export default {
-  components: {
-    FooterView,
-  },
   data() {
     return {
       isLoading: false,

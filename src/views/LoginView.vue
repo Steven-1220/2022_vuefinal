@@ -35,9 +35,7 @@
             <button type="submit" class="w-100 btn btn-primary">登入</button>
           </div>
           <div class="col-md-6 text-nowrap">
-            <router-link to="/" class="w-100 btn btn-primary"
-              >回首頁</router-link
-            >
+            <RouterLink to="/" class="w-100 btn btn-primary">回首頁</RouterLink>
           </div>
         </form>
       </div>
@@ -63,16 +61,14 @@ export default {
       this.$http
         .post(url, this.user)
         .then((res) => {
-          // console.log(res.data);
           const { token, expired } = res.data;
           // 回傳的 token 存到 hexToken
           document.cookie = `myToken=${token}; expires=${new Date(expired)};`;
           // 轉址到 後台產品列表
           this.$router.push("/admin/products");
         })
-        .catch((error) => {
-          console.log(error.data);
-          alert(error.data.message);
+        .catch((err) => {
+          alert(err.response.data.message);
         });
     },
     loadingEffect() {

@@ -4,13 +4,18 @@
   <header
     class="container-fluid main-header px-5 py-5 mb-5 d-flex justify-content-center align-items-md-center"
     style="
-      background-image: url(https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?cs=srgb&dl=pexels-pixabay-45202.jpg&fm=jpg);
-      height: 450px;
+      background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649561649225.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Qh4NFJmtFKwbUAdgHldCXqtgsW4YrO0eoGEaK%2FVNVzHT6ghQZecDUmHQ2ek5%2FdnRL2JZlHG6zBujkxC4WB1hCh8hv4JoeHXmBP0ySk%2FsdVAth2Zl83Ry7iLM25CosbJQ7IuJH96eLLq4MBgWttfgkJTwieoZdEAgk%2B48Kv4%2B816yl0XxLUUiwv7%2FGebKRuN8%2Fj8t3I5EWDrHZXrpqeYe5yw0uRh8M%2FLVTp%2FMXtMgZNjVbWnh3O0Wfvv6PV2KcDxpHNCisk2gvZmOIphKvcc%2B%2BsCYBj0U9SQ3ztbPZznGw0e89rDosCsiSndV%2B7%2Bz64qbzaHxQX7pZPeafgOI9%2B6MNA%3D%3D);
+      height: 400px;
       background-attachment: fixed;
     "
   >
-    <div class="text-white text-center">
-      <h2 class="fs-1 fw-bold">選擇您的幸褔甜點</h2>
+    <div
+      class="text-white text-center special-bg p-4 d-flex flex-column justify-content-center text-wrap"
+    >
+      <h2 class="fs-2 fs-sm-1 fw-bold">選擇您的幸褔甜點</h2>
+      <p class="fs-4 fs-sm-3">
+        每一種甜點都值得品嘗 <br />觸動您的味蕾 <br />感受到法式幸福的滋味
+      </p>
     </div>
   </header>
 
@@ -57,23 +62,23 @@
               <div class="card-body text-center position-relative">
                 <span
                   v-if="favorite.includes(item.id)"
-                  class="position-absolute top-0 end-0"
+                  class="position-absolute heart"
                   ><i class="bi bi-heart-fill text-danger"></i
                 ></span>
-                <router-link :to="`product/${item.id}`">
+                <RouterLink :to="`product/${item.id}`">
                   <img
                     :src="item.imageUrl"
                     :alt="item.category"
                     class="img-fluid"
                     style="height: 280px; width: 100%; object-fit: cover"
                   />
-                </router-link>
+                </RouterLink>
 
                 <div class="text-center text-dark mt-2">
-                  <router-link
+                  <RouterLink
                     :to="`product/${item.id}`"
-                    class="text-decoration-none"
-                    >{{ item.title }}</router-link
+                    class="text-decoration-none stretched-link"
+                    >{{ item.title }}</RouterLink
                   >
                 </div>
                 <div class="d-flex align-items-center justify-content-around">
@@ -88,12 +93,12 @@
                 </div>
               </div>
               <div class="card-body d-flex justify-content-between text-nowrap">
-                <router-link
+                <RouterLink
                   :to="`product/${item.id}`"
                   class="btn btn-outline-primary"
                 >
                   查看產品
-                </router-link>
+                </RouterLink>
 
                 <button
                   type="button"
@@ -113,16 +118,14 @@
     :pages="pagination"
     @emit-get-page="getProduct"
   ></PaginationView>
-  <FooterView></FooterView>
 </template>
 
 <script>
 import emitter from "@/libraries/emitter";
-import FooterView from "@/components/FooterView.vue";
 import PaginationView from "@/components/PaginationView.vue";
+
 export default {
   components: {
-    FooterView,
     PaginationView,
   },
   data() {
@@ -145,10 +148,10 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.products = res.data.products;
           this.pagination = res.data.pagination;
           emitter.emit("get-cart");
+          emitter.emit("toggle-menu");
           this.isLoading = false;
         })
         .catch((err) => {
@@ -158,7 +161,6 @@ export default {
 
     // 加入購物車
     addToCart(id) {
-      // this.isLoading = true;
       const data = {
         product_id: id,
         qty: 1,
@@ -170,7 +172,6 @@ export default {
           { data },
         )
         .then(() => {
-          // this.isLoading = false;
           const Toast = this.$swal.mixin({
             toast: true,
             position: "top-end",
@@ -188,7 +189,6 @@ export default {
             title: "成功加入購物車",
           });
 
-          // console.log(res);
           // 觸發監聽
           emitter.emit("get-cart");
         })
@@ -211,5 +211,14 @@ export default {
 
 .move:hover {
   transform: translateY(-20px);
+}
+
+.special-bg {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.heart {
+  right: 20px;
+  top: 20px;
 }
 </style>

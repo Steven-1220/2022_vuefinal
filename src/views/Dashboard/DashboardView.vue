@@ -8,38 +8,39 @@
     >
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link class="nav-link ps-md-0" to="/admin/products"
-            >產品</router-link
+          <RouterLink class="nav-link ps-md-0" to="/admin/products"
+            >產品</RouterLink
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link ps-md-2" to="/admin/orders"
-            >訂單</router-link
+          <RouterLink class="nav-link ps-md-2" to="/admin/orders"
+            >訂單</RouterLink
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link ps-md-2" to="/admin/coupon"
-            >優惠券</router-link
+          <RouterLink class="nav-link ps-md-2" to="/admin/coupon"
+            >優惠券</RouterLink
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link ps-md-2" to="/admin/article"
-            >貼文</router-link
+          <RouterLink class="nav-link ps-md-2" to="/admin/article"
+            >貼文</RouterLink
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link ps-md-5" to="/login">登出</router-link>
+          <RouterLink class="nav-link ps-md-5" to="/login">登出</RouterLink>
         </li>
       </ul>
     </div>
   </nav>
 
-  <router-view v-if="checkSuccess"></router-view>
+  <RouterView v-if="checkSuccess"></RouterView>
 </template>
 
 <script>
 // 驗證寫在 Dashboard 統一管理，並由 router-view 控制切換呈現的內容
 import ToastMessage from "@/components/ToastMessage.vue";
+
 export default {
   components: {
     ToastMessage,

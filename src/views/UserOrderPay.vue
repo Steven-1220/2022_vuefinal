@@ -44,11 +44,11 @@
         <div class="row justify-content-center py-5">
           <div class="col-md-6">
             <div class="text-center d-flex justify-content-center">
-              <router-link to="/" class="btn btn-primary me-3"
-                >回首頁</router-link
+              <RouterLink to="/" class="btn btn-primary me-3"
+                >回首頁</RouterLink
               >
-              <router-link to="/user/products" class="btn btn-warning"
-                >繼續購物</router-link
+              <RouterLink to="/user/products" class="btn btn-warning"
+                >繼續購物</RouterLink
               >
             </div>
           </div>
@@ -56,15 +56,12 @@
       </div>
     </section>
   </div>
-  <FooterView></FooterView>
 </template>
 
 <script>
-import FooterView from "@/components/FooterView.vue";
+import emitter from "@/libraries/emitter";
+
 export default {
-  components: {
-    FooterView,
-  },
   data() {
     return {
       isLoading: false,
@@ -73,6 +70,7 @@ export default {
   methods: {
     LoadingEffect() {
       this.isLoading = true;
+      emitter.emit("toggle-menu");
       setTimeout(() => {
         this.isLoading = false;
       }, 500);

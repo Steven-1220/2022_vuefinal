@@ -1,18 +1,17 @@
 <template>
   <VueLoading :active="isLoading"></VueLoading>
-  <div class="container">
-    <div class="row mb-4">
+  <div class="container p-5">
+    <h3 class="fs-3">個別產品詳細內容</h3>
+    <div class="row g-5 mb-4">
       <div class="col-md-6">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <router-link to="/" class="text-decoration-none"
-                >首頁</router-link
-              >
+              <RouterLink to="/" class="text-decoration-none">首頁</RouterLink>
             </li>
             <li class="breadcrumb-item">
-              <router-link to="/user/products" class="text-decoration-none"
-                >全部商品</router-link
+              <RouterLink to="/user/products" class="text-decoration-none"
+                >全部商品</RouterLink
               >
             </li>
             <li class="breadcrumb-item">{{ product.category }}</li>
@@ -35,10 +34,10 @@
       </div>
       <div class="col-md-6">
         <div class="d-flex">
-          <h2 class="fs-2 pt-2">{{ product.title }}</h2>
+          <h2 class="fs-2 pt-2 fw-bold">{{ product.title }}</h2>
           <div class="btn-group btn-group">
             <button type="button" class="btn" @click="switchFavorite">
-              點個愛心吧
+              加入我的最愛
               <span v-if="favorite.includes(this.$route.params.id)"
                 ><i class="bi bi-heart-fill text-danger"></i
               ></span>
@@ -76,7 +75,7 @@
           <div class="col-md-3">
             <button
               type="button"
-              class="btn btn-primary text-nowrap"
+              class="btn btn-primary text-nowrap mt-3 mt-sm-0"
               :disabled="loadingState === product.id"
               @click="addToCart(product.id)"
             >
@@ -117,7 +116,7 @@
         <div class="col-md-6">
           <div
             style="
-              background-image: url(https://images.pexels.com/photos/6479588/pexels-photo-6479588.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+              background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649561908363.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=EBLsf4bStTF8v0M3PSDkd2ujFwK8PayXUVCzDK%2BkmfKogp6eXoayfxzKr%2Ba%2BF1b8ZV9T0ZmRxvCPCzjQmNoEMJ6n7AHEcI%2B76%2BXiqLfjMdfDJZ3bQgkgXH3zHK1goER6LNbE9Hx5FS2lbOda8Z5kD0PWFJmjBKwoZOdnqIdEWu8E9adv4FsYKbDaUitUuTBrGdYMMTXZHpFnu7EmqxXQuMV7fPkT0wZxR3T7tsWPHG79q8iFR3vfAg86Hg1aBSqAgao%2FKX3ROvmohGDIIjNWK1cAIl%2BLjHzw%2Fcme5F9O8ormcUwm6nQmUAVJdgg0m6gBRJ08vkPOPnErHW%2BBZSXQ8A%3D%3D);
               background-position: center center;
               background-size: cover;
             "
@@ -129,9 +128,9 @@
   </section>
 
   <section class="py-5">
-    <div class="container">
+    <div class="container p-4">
       <h3 class="fw-bold pb-3">其他推薦商品</h3>
-      <swiper
+      <Swiper
         :slides-per-view="1"
         :space-between="50"
         :modules="modules"
@@ -152,24 +151,24 @@
           },
         }"
       >
-        <swiper-slide v-for="item in products" :key="item.id">
+        <SwiperSlide v-for="item in products" :key="item.id">
           <div class="row">
             <div class="col">
               <div class="card h-100">
                 <div class="card-body text-center">
-                  <router-link :to="`${item.id}`" class="d-block">
+                  <RouterLink :to="`${item.id}`" class="d-block">
                     <img
                       :src="item.imageUrl"
-                      alt=""
+                      :alt="item.category"
                       class="img-fluid"
                       style="height: 280px; object-fit: cover"
                     />
-                  </router-link>
+                  </RouterLink>
                   <div class="text-center text-dark mt-2">
-                    <router-link
+                    <RouterLink
                       :to="`${item.id}`"
                       class="text-decoration-none d-block"
-                      >{{ item.title }}</router-link
+                      >{{ item.title }}</RouterLink
                     >
                   </div>
                   <div class="d-flex align-items-center justify-content-around">
@@ -184,12 +183,12 @@
                   </div>
                 </div>
                 <div class="card-body d-flex justify-content-between">
-                  <router-link
+                  <RouterLink
                     :to="`${item.id}`"
                     class="btn btn-outline-primary d-block"
                   >
                     查看產品
-                  </router-link>
+                  </RouterLink>
 
                   <button
                     type="button"
@@ -202,11 +201,10 @@
               </div>
             </div>
           </div>
-        </swiper-slide>
-      </swiper>
+        </SwiperSlide>
+      </Swiper>
     </div>
   </section>
-  <FooterView></FooterView>
 </template>
 
 <script>
@@ -218,10 +216,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import emitter from "@/libraries/emitter";
-import FooterView from "@/components/FooterView.vue";
+
 export default {
   components: {
-    FooterView,
     Swiper,
     SwiperSlide,
   },
@@ -241,18 +238,16 @@ export default {
   methods: {
     // 取得單一特定產品資訊
     getProductInfo() {
-      // $router -> 方法 ，$route -> 物件
       this.isLoading = true;
-      // console.log(this.$route);
       const id = this.$route.params.id;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`;
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res);
           this.product = res.data.product;
-          // 再取得同一種類產品
+
           this.getProduct(this.product.category);
+          emitter.emit("toggle-menu");
           this.isLoading = false;
         })
         .catch((err) => {
@@ -307,7 +302,6 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.products = res.data.products;
         })
         .catch((err) => {
@@ -317,17 +311,15 @@ export default {
 
     switchFavorite() {
       const id = this.$route.params.id;
-      // console.log(id);
-      const heartIndex = this.favorite.findIndex((item) => item === id);
-      // console.log(heartIndex);
 
-      // 若沒有 heartId，就新增一個，反之則移除
+      const heartIndex = this.favorite.findIndex((item) => item === id);
+
+      // 若沒有 heartIndex，就新增一個，反之則移除
       if (heartIndex === -1) {
         this.favorite.push(id);
       } else {
         this.favorite.splice(heartIndex, 1);
       }
-      console.log(this.favorite);
     },
     // 確認數量最少為 1
     confirmNum(num) {
@@ -342,7 +334,7 @@ export default {
       }
     },
   },
-  // favorite  是陣列，使用深層監聽，當 favorite 有變動則寫入
+  // favorite 是陣列，使用深層監聽，當 favorite 有變動則寫入
   watch: {
     favorite: {
       handler() {
@@ -352,7 +344,9 @@ export default {
     },
     $route(to) {
       this.id = to.params.id;
-      this.getProductInfo();
+      if (this.$route.params.id !== undefined) {
+        this.getProductInfo();
+      }
     },
     quantity() {
       this.confirmNum(this.quantity);
@@ -361,7 +355,6 @@ export default {
 
   mounted() {
     this.getProductInfo();
-    // console.log(this.favorite);
   },
 };
 </script>
