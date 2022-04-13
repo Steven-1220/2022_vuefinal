@@ -25,12 +25,6 @@
             background-position: center;
           "
         ></div>
-        <!-- <img
-          :src="product.imageUrl"
-          class="img-fluid"
-          :alt="product.category"
-          style="height: 300px width: 100%; object-fit: cover"
-        /> -->
       </div>
       <div class="col-md-6">
         <div class="d-flex">
