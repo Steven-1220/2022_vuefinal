@@ -105,7 +105,6 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.products = res.data.products;
           this.pagination = res.data.pagination;
           this.isLoading = false;

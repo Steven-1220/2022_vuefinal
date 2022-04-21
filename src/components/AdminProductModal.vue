@@ -283,7 +283,6 @@ export default {
       this.$http
         .post(url, formData)
         .then((res) => {
-          // console.log(res);
           this.tempProduct.imageUrl = res.data.imageUrl;
           this.$refs.fileRef.value = "";
           this.$httpMessageState(res, state);
@@ -298,9 +297,9 @@ export default {
     //上傳多圖
     upload(index) {
       let fileInput = document.querySelectorAll("input[type=file]");
-      // console.dir(fileInput);
+
       const file = fileInput[index].files[0];
-      // console.log(file);
+
       const formData = new FormData();
       formData.append("file-to-upload", file);
       let state = "圖片上傳";
@@ -308,7 +307,6 @@ export default {
       this.$http
         .post(url, formData)
         .then((res) => {
-          // console.log(res);
           this.tempProduct.imagesUrl.push(res.data.imageUrl);
           this.$httpMessageState(res, state);
         })

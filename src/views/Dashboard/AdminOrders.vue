@@ -114,7 +114,6 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.orders = res.data.orders;
           this.pagination = res.data.pagination;
           this.isLoading = false;
@@ -146,7 +145,6 @@ export default {
       this.$http
         .put(url, { data: paidState })
         .then((res) => {
-          // console.log(res.data);
           this.getAllOrders();
           this.$httpMessageState(res, "已更新付款狀態");
           this.$refs.orderModalRef.close();

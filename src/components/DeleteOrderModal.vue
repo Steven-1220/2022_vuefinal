@@ -68,7 +68,6 @@ export default {
     };
   },
 
-  // props: ["deleteOrderItem"],
   props: {
     deleteOrderItem: {},
     isAllOrders: {
@@ -103,8 +102,7 @@ export default {
         .delete(
           `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders/all`,
         )
-        .then((res) => {
-          console.log(res.data);
+        .then(() => {
           this.$emit("get-orders");
           this.close();
         })
