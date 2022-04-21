@@ -58,12 +58,12 @@
                 <span
                   class="fs-6 fw-bold"
                   v-if="favorite.includes(this.$route.params.id)"
-                  ><i class="bi bi-heart-fill text-danger"
-                    >已加入我的最愛</i
+                  ><i class="bi bi-heart-fill text-danger">
+                    已加入我的最愛</i
                   ></span
                 >
                 <span v-else class="fs-6"
-                  ><i class="bi bi-heart-fill"></i>尚未加入我的最愛</span
+                  ><i class="bi bi-heart-fill"></i> 加入我的最愛</span
                 >
               </button>
             </div>
@@ -133,7 +133,7 @@
 
   <section class="py-5">
     <div class="container p-4">
-      <h3 class="fw-bold pb-3">其他推薦商品</h3>
+      <h3 class="fw-bold pb-3 ps-4">相關推薦甜點</h3>
       <Swiper
         :slides-per-view="1"
         :space-between="50"
@@ -228,7 +228,9 @@ export default {
   },
   data() {
     return {
-      product: {},
+      product: {
+        imageUrl: "",
+      },
       products: [],
       quantity: 1,
       loadingState: "",

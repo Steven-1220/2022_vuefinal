@@ -7,7 +7,7 @@
         to="/"
       >
         <i class="bi bi-balloon-heart-fill"></i> SweetHome
-        <br class="d-block d-sm-none" />
+        <br class="d-block d-sm-none d-lg-block d-xl-none" />
         經典法式甜點
       </RouterLink>
 

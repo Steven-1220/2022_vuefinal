@@ -1,33 +1,7 @@
 <template>
   <VueLoading :active="isLoading" />
   <div class="wrap">
-    <section class="pt-5">
-      <div class="container">
-        <h3 class="mb-3">購物狀態</h3>
-
-        <div class="row row-cols-1 row-cols-lg-3">
-          <div class="col">
-            <div class="shop-state text-center border bg-warning p-3">
-              <span>1</span>
-              確認購物車內容
-            </div>
-          </div>
-          <div class="col">
-            <div class="shop-state text-center border p-3">
-              <span>2</span>
-              填寫訂單
-            </div>
-          </div>
-          <div class="col">
-            <div class="shop-state text-center border p-3">
-              <span>3</span>
-              完成訂單
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <ProgressView step="1" />
     <section class="pt-5">
       <div class="container">
         <div class="row">
@@ -126,9 +100,7 @@
                             <small class="text-success">折扣價：</small>
                             $ {{ item.total - item.final_total }}
                           </div>
-                          <div v-else>
-                            $ {{ $filters.numberAddComma(item.final_total) }}
-                          </div>
+                          <div v-else>${{ item.final_total }}</div>
                         </td>
                       </tr>
                     </tbody>
@@ -136,12 +108,19 @@
                     <tfoot>
                       <tr>
                         <td colspan="5" class="text-end">總計</td>
-                        <td class="text-end">$ {{ cartData.total }}</td>
+                        <td class="text-end">
+                          $ {{ $filters.numberAddComma(cartData.total) }}
+                        </td>
                       </tr>
                       <tr v-if="cartData.final_total !== cartData.total">
                         <td colspan="5" class="text-end">折扣後價格</td>
                         <td class="text-end text-danger">
-                          $ {{ cartData.total - cartData.final_total }}
+                          $
+                          {{
+                            $filters.numberAddComma(
+                              cartData.total - cartData.final_total,
+                            )
+                          }}
                         </td>
                       </tr>
                     </tfoot>
@@ -189,8 +168,12 @@
 
 <script>
 import emitter from "@/libraries/emitter";
+import ProgressView from "@/components/ProgressView.vue";
 
 export default {
+  components: {
+    ProgressView,
+  },
   data() {
     return {
       cartData: {
