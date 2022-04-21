@@ -5,7 +5,7 @@
       <div class="row row-cols-1 row-cols-lg-3">
         <div class="col">
           <div
-            class="shop-state text-center border p-3"
+            class="shop-state text-center border border-primary p-3 clear-overlap"
             :class="{ 'bg-warning': step >= 1 }"
           >
             <span>1</span>
@@ -14,7 +14,7 @@
         </div>
         <div class="col">
           <div
-            class="shop-state text-center border p-3"
+            class="shop-state text-center border border-primary p-3 clear-overlap"
             :class="{ 'bg-warning': step >= 2 }"
           >
             <span>2</span>
@@ -23,7 +23,7 @@
         </div>
         <div class="col">
           <div
-            class="shop-state text-center border p-3"
+            class="shop-state text-center border border-primary p-3"
             :class="{ 'bg-warning': step >= 3 }"
           >
             <span>3</span>
@@ -42,3 +42,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@media (max-width: 992px) {
+  .clear-overlap {
+    margin-bottom: -1px;
+  }
+}
+</style>
