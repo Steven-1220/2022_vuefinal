@@ -1,5 +1,5 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
   <h2 class="text-center pt-4">訂單</h2>
   <div class="container">
     <div class="row py-3">
@@ -69,23 +69,20 @@
       </div>
     </div>
     <!-- 分頁元件 -->
-    <PaginationView
-      :pages="pagination"
-      @emit-get-page="getAllOrders"
-    ></PaginationView>
+    <PaginationView :pages="pagination" @emit-get-page="getAllOrders" />
     <!-- 訂單元件 -->
     <OrderModal
       :order-mod="tempOrder"
       @update-order="updateOrderState"
       ref="orderModalRef"
-    ></OrderModal>
+    />
     <!-- 刪除訂單元件 -->
     <DeleteOrderModal
       :delete-order-item="tempOrder"
       :is-all-orders="isAllOrders"
       @get-orders="getAllOrders"
       ref="delModalRef"
-    ></DeleteOrderModal>
+    />
   </div>
 </template>
 

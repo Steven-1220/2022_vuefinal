@@ -1,13 +1,9 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
 
   <header
-    class="container-fluid main-header px-5 py-5 mb-5 d-flex justify-content-center align-items-md-center"
-    style="
-      background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649561649225.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Qh4NFJmtFKwbUAdgHldCXqtgsW4YrO0eoGEaK%2FVNVzHT6ghQZecDUmHQ2ek5%2FdnRL2JZlHG6zBujkxC4WB1hCh8hv4JoeHXmBP0ySk%2FsdVAth2Zl83Ry7iLM25CosbJQ7IuJH96eLLq4MBgWttfgkJTwieoZdEAgk%2B48Kv4%2B816yl0XxLUUiwv7%2FGebKRuN8%2Fj8t3I5EWDrHZXrpqeYe5yw0uRh8M%2FLVTp%2FMXtMgZNjVbWnh3O0Wfvv6PV2KcDxpHNCisk2gvZmOIphKvcc%2B%2BsCYBj0U9SQ3ztbPZznGw0e89rDosCsiSndV%2B7%2Bz64qbzaHxQX7pZPeafgOI9%2B6MNA%3D%3D);
-      height: 400px;
-      background-attachment: fixed;
-    "
+    class="container-fluid main-header px-5 py-5 mb-5 d-flex justify-content-center align-items-md-center bg-p1"
+    style="height: 400px; background-attachment: fixed"
   >
     <div
       class="text-white text-center special-bg p-4 d-flex flex-column justify-content-center text-wrap"
@@ -21,33 +17,39 @@
 
   <section class="container">
     <div class="row">
-      <div class="col-md-3 pt-3">
+      <div class="col-md-3 pt-3 text-center">
+        <h4 class="fs-4 bg-warning text-dark py-3 mb-0">甜點種類</h4>
         <div class="list-group">
           <button
+            type="button"
             class="list-group-item list-group-item-action btn-hover-primary"
             @click="getProduct(1)"
           >
             全部
           </button>
           <button
+            type="button"
             class="list-group-item list-group-item-action btn-hover-primary"
             @click="getProduct(1, '蛋糕')"
           >
             蛋糕
           </button>
           <button
+            type="button"
             class="list-group-item list-group-item-action btn-hover-primary"
             @click="getProduct(1, '酥皮')"
           >
             酥皮
           </button>
           <button
+            type="button"
             class="list-group-item list-group-item-action btn-hover-primary"
             @click="getProduct(1, '布丁')"
           >
             布丁
           </button>
           <button
+            type="button"
             class="list-group-item list-group-item-action btn-hover-primary"
             @click="getProduct(1, '巧克力')"
           >
@@ -60,11 +62,6 @@
           <div class="col" v-for="item in products" :key="item.id">
             <div class="card border-0 h-100 move">
               <div class="card-body text-center position-relative">
-                <span
-                  v-if="favorite.includes(item.id)"
-                  class="position-absolute heart"
-                  ><i class="bi bi-heart-fill text-danger"></i
-                ></span>
                 <RouterLink :to="`product/${item.id}`">
                   <img
                     :src="item.imageUrl"
@@ -92,7 +89,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body d-flex justify-content-between text-nowrap">
+              <div
+                class="card-body d-flex justify-content-between text-wrap text-sm-nowrap"
+              >
                 <RouterLink
                   :to="`product/${item.id}`"
                   class="btn btn-outline-primary"
@@ -103,6 +102,7 @@
                 <button
                   type="button"
                   class="btn btn-primary"
+                  :disabled="loadingState"
                   @click="addToCart(item.id)"
                 >
                   加入購物車
@@ -114,10 +114,8 @@
       </div>
     </div>
   </section>
-  <PaginationView
-    :pages="pagination"
-    @emit-get-page="getProduct"
-  ></PaginationView>
+
+  <PaginationView :pages="pagination" @emit-get-page="getProduct" />
 </template>
 
 <script>
@@ -132,6 +130,7 @@ export default {
     return {
       products: [],
       isLoading: false,
+      loadingState: false,
       pagination: {},
       favorite: JSON.parse(localStorage.getItem("favorite")) || [],
     };
@@ -165,7 +164,7 @@ export default {
         product_id: id,
         qty: 1,
       };
-
+      this.loadingState = true;
       this.$http
         .post(
           `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`,
@@ -191,6 +190,7 @@ export default {
 
           // 觸發監聽
           emitter.emit("get-cart");
+          this.loadingState = false;
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -198,7 +198,11 @@ export default {
     },
   },
   mounted() {
-    this.getProduct();
+    if (this.$route.query.category) {
+      this.getProduct(1, this.$route.query.category);
+    } else {
+      this.getProduct();
+    }
   },
 };
 </script>
@@ -220,5 +224,9 @@ export default {
 .heart {
   right: 20px;
   top: 20px;
+}
+
+.bg-p1 {
+  background-image: url(../assets/images/products.jpg);
 }
 </style>

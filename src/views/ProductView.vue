@@ -1,5 +1,5 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
   <div class="container p-5">
     <h3 class="fs-3">個別產品詳細內容</h3>
     <div class="row g-5 mb-4">
@@ -29,15 +29,6 @@
       <div class="col-md-6">
         <div class="d-flex">
           <h2 class="fs-2 pt-2 fw-bold">{{ product.title }}</h2>
-          <div class="btn-group btn-group">
-            <button type="button" class="btn" @click="switchFavorite">
-              加入我的最愛
-              <span v-if="favorite.includes(this.$route.params.id)"
-                ><i class="bi bi-heart-fill text-danger"></i
-              ></span>
-              <span v-else><i class="bi bi-heart-fill"></i></span>
-            </button>
-          </div>
         </div>
 
         <span class="badge rounded-pill bg-primary">{{
@@ -56,6 +47,28 @@
           </p>
           <p class="h4">特價: {{ product.price }} / {{ product.unit }}</p>
         </div>
+        <div class="row mb-2">
+          <div class="col">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-warning"
+                @click="switchFavorite"
+              >
+                <span
+                  class="fs-6 fw-bold"
+                  v-if="favorite.includes(this.$route.params.id)"
+                  ><i class="bi bi-heart-fill text-danger"
+                    >已加入我的最愛</i
+                  ></span
+                >
+                <span v-else class="fs-6"
+                  ><i class="bi bi-heart-fill"></i>尚未加入我的最愛</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
 
         <div class="row g-sm-2">
           <div class="col-md-9">
@@ -64,6 +77,7 @@
               min="1"
               class="form-control"
               v-model.number="quantity"
+              @change="confirmNum(quantity)"
             />
           </div>
           <div class="col-md-3">
@@ -109,12 +123,8 @@
         </div>
         <div class="col-md-6">
           <div
-            style="
-              background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649561908363.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=EBLsf4bStTF8v0M3PSDkd2ujFwK8PayXUVCzDK%2BkmfKogp6eXoayfxzKr%2Ba%2BF1b8ZV9T0ZmRxvCPCzjQmNoEMJ6n7AHEcI%2B76%2BXiqLfjMdfDJZ3bQgkgXH3zHK1goER6LNbE9Hx5FS2lbOda8Z5kD0PWFJmjBKwoZOdnqIdEWu8E9adv4FsYKbDaUitUuTBrGdYMMTXZHpFnu7EmqxXQuMV7fPkT0wZxR3T7tsWPHG79q8iFR3vfAg86Hg1aBSqAgao%2FKX3ROvmohGDIIjNWK1cAIl%2BLjHzw%2Fcme5F9O8ormcUwm6nQmUAVJdgg0m6gBRJ08vkPOPnErHW%2BBZSXQ8A%3D%3D);
-              background-position: center center;
-              background-size: cover;
-            "
-            class="h-100 d-none d-md-block"
+            style="background-position: center center; background-size: cover"
+            class="h-100 d-none d-md-block bg-p1"
           ></div>
         </div>
       </div>
@@ -149,7 +159,7 @@
           <div class="row">
             <div class="col">
               <div class="card h-100">
-                <div class="card-body text-center">
+                <div class="card-body text-center position-relative">
                   <RouterLink :to="`${item.id}`" class="d-block">
                     <img
                       :src="item.imageUrl"
@@ -161,7 +171,7 @@
                   <div class="text-center text-dark mt-2">
                     <RouterLink
                       :to="`${item.id}`"
-                      class="text-decoration-none d-block"
+                      class="text-decoration-none d-block stretched-link"
                       >{{ item.title }}</RouterLink
                     >
                   </div>
@@ -297,12 +307,18 @@ export default {
         .get(url)
         .then((res) => {
           this.products = res.data.products;
+          // 刪除當前頁面的同一個產品，避免重複
+          const delIndex = this.products.findIndex((item) => {
+            return item.id === this.$route.params.id;
+          });
+          this.products.splice(delIndex, 1);
         })
         .catch((err) => {
           console.log(err.response.data);
         });
     },
 
+    //切換我的最愛
     switchFavorite() {
       const id = this.$route.params.id;
 
@@ -319,12 +335,6 @@ export default {
     confirmNum(num) {
       if (!/(^[1-9]\d*$)/.test(num)) {
         this.quantity = 1;
-        this.$swal.fire({
-          icon: "error",
-          title: "糟糕",
-          text: "數量最少要 1 喔",
-          confirmButtonColor: "#3C3F5F",
-        });
       }
     },
   },
@@ -342,9 +352,6 @@ export default {
         this.getProductInfo();
       }
     },
-    quantity() {
-      this.confirmNum(this.quantity);
-    },
   },
 
   mounted() {
@@ -352,3 +359,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.bg-p1 {
+  background-image: url(../assets/images/product.jpg);
+}
+</style>

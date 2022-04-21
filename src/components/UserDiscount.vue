@@ -47,7 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 .discount {
-  background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649859352176.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=eBT8R3shwZJi86wTkElJl2MvTc58Io1KzBGI6sxPRUjS1JldLp6pb36XFbgPF0ZfVsirNLOBc%2BiCs1UHgt7Isw7k7ouIw1lsYWavBFiPZS%2FewoiwiZn621FP0RjAS08gDFIZ1kjjFZ3WphsMUQabADGhbMIcQJd4gjdkAbqURv2g64PP6rgL1B%2FSXe3EvTI7bGoG9ZepkmlXpJe45%2B%2BguPSFUyLdP0SK%2BqcJEw4B%2FBFOHcZ7fB%2FdSeX4kTswKXrdpGfjiWDhp6muZHnW5f%2FhVkr5gufcnIomYosgXH2S9HbSFkyTEx6JqV20TFXkYkmIr5hYAFUbcl9aV1VqL4E85w%3D%3D);
+  background-image: url(../assets/images/home02.jpg);
   background-position: 50% 50%;
   background-size: cover;
 }

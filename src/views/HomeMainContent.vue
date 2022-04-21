@@ -1,13 +1,10 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
 
   <div class="wrap">
     <header
-      class="container-fluid main-header px-5 py-5 d-flex justify-content-center align-items-md-center"
-      style="
-        background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649560317156.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=ZJErPHPODvaqvpeC2aa6WdoTcFAiMYub6KeXDhGpYAkN5YUTOj4ojA5taOGytKZPTe6S20PgAqUlFo0sDyugLhK3FYL%2BXu%2Bqoxr37roFa9zxAalRJ%2BhZ6xvlh2KoWtaoir9NcwZa7DFbbCEU%2B6RvSPp2WjLtz4nEpoDXgMSDeTFXi2oezdTBkuUkhf2tX7vqa9L7e0SyTPr6V4FzrpblgyNkK4selXWZtyK899lmIKpqrZqT616Sl1dQsIw964COhh%2B0KU0S2Rqh5LRrWZv7cyAMwwDPMFOwvo7Uau2kDmGR5GQA3cPpKL8ui9FR%2BZoborJuGxmtMybBMyiu%2F6NSgw%3D%3D);
-        background-attachment: fixed;
-      "
+      class="container-fluid main-header px-5 py-5 d-flex justify-content-center align-items-md-center bg-p1"
+      style="background-attachment: fixed"
     >
       <div class="text-white text-center d-flex align-items-center">
         <div class="special-bg position-relative p-4">
@@ -26,7 +23,7 @@
       </div>
     </header>
 
-    <UserDiscount></UserDiscount>
+    <UserDiscount />
 
     <section class="container mt-5">
       <div class="row justify-content-center">
@@ -35,12 +32,15 @@
             <div class="input-group justify-content-center fs-6 fs-sm-5">
               <input
                 type="search"
-                list="flavors"
                 class="border border-1 w-50 p-2"
                 placeholder="搜尋甜點"
                 v-model="search"
               />
-              <button class="btn btn-warning">
+              <button
+                type="button"
+                class="btn btn-warning"
+                @click="searchProduct"
+              >
                 <span><i class="bi bi-search"></i></span>
               </button>
             </div>
@@ -70,7 +70,7 @@
         <div class="row mb-4 g-md-0">
           <div class="col-md-6">
             <img
-              src="https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649560740112.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=j44L56X%2Bl56GVpquTyF9XW6F96HtfLf5WuTfkoFf5XxG%2BjodKA4wEt5umKThm%2BP1FJo%2ByZe84cUFvHfIrmvHAEV8%2BIr2m05Rhkbe5x1ffqJ6Ltnqyxaz%2FgXNBMCgVOn%2FomwtuNhHp7NLiYKlcXXVKjIyvfdQH9usKhsM4KkvFh1SnOhyy9ttZreT3iGsw5tqpCw00NwFEBpVEa5EsWUcsNJTm50sSJN8RnppIDFK6XuPCvMwgAvhks7FlR4SHFBJbBadiFkxDlp9x1uVS%2BEGcLjhhjO8%2Bx%2Fw1r6zlMPVR%2FVx7HOKqoIusVX%2FoNGzmztgTxmqFXp66XZmVfqSrTBAlg%3D%3D"
+              src="../assets/images/home03.jpg"
               class="w-100"
               alt="首頁產品特色圖片"
             />
@@ -78,20 +78,27 @@
           <div
             class="col-md-6 d-flex justify-content-center align-items-center home-special"
           >
-            <div class="pt-3">
-              <h2 class="text-warning text-center">新鮮天然</h2>
+            <div class="pt-3 position-relative">
+              <h2 class="text-primary text-center fw-bold">新鮮天然</h2>
               <p class="lh-lg fs-4 text-lg-light">
-                使用高級的食材、健康的原物料 <br />
-                無添加人工香料、色素、防腐劑 <br />
-                甜點也可以健康的吃
+                使用高級的食材、健康的原物料， <br />
+                無添加人工香料、色素、防腐劑， <br />
+                甜點也可以健康的吃。
               </p>
+              <div class="d-flex justify-content-center pb-md-3 pb-lg-0">
+                <RouterLink
+                  to="/user/material"
+                  class="btn btn-primary w-50 stretched-link fs-4"
+                  >認識原料</RouterLink
+                >
+              </div>
             </div>
           </div>
         </div>
         <div class="row g-md-0 flex-md-row-reverse">
           <div class="col-md-6">
             <img
-              src="https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649561397946.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=PaO0js1rO2L2%2BiAXEBr78%2BX2aTDLoFu7Te7Sq7IX3TFbL7DBI33ACX5b48V79jbNYEojZDeWL%2FJfIyS2CSP6itz7LGiEvNqy3VWDnSHNfWpm4ZZqzpf%2BzOSBPHpLJRJlpJXerxk7yjcgxHbJniyR7bYo%2FgPTjbRzRpdv9eoW8%2Bu9329tKkU06S8ovGw%2FLVv7KgpdeUvOVjaGHxKlFA3F%2B4oHDzl0wGm0W9TNRvsWMtXXTK%2BZHp2ECssSOlelqWuYv9nmIoMqiFDxSg7x0a9e0D%2Bqji522N4EQIUmlaR%2FcQX1Jz9l0S8bPqdE5c4q05HeZbLZ9sn2ikmJnaX9b5Vj7A%3D%3D"
+              src="../assets/images/home04.jpg"
               class="w-100"
               alt="首頁產品特色圖片"
             />
@@ -99,13 +106,103 @@
           <div
             class="col-md-6 d-flex justify-content-center align-items-center home-special"
           >
-            <div class="pt-3">
-              <h2 class="text-warning text-center">精心製作</h2>
+            <div class="pt-3 position-relative">
+              <h2 class="text-primary text-center fw-bold">精心製作</h2>
               <p class="lh-lg fs-4 text-lg-light">
-                師傅長年累積的經驗 <br />
-                獨創的手藝和訣竅 <br />
-                製作出層次豐富紮實的甜點
+                師傅長年累積的經驗， <br />
+                獨創的手藝和訣竅， <br />
+                製作出層次豐富紮實的甜點。
               </p>
+              <div class="d-flex justify-content-center pb-md-3 pb-lg-0">
+                <RouterLink
+                  to="/user/about"
+                  class="btn btn-primary w-50 stretched-link fs-4"
+                  >關於我們</RouterLink
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-5 bg-primary bg-p2"
+      style="
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+      "
+    >
+      <div class="container">
+        <h2 class="text-center text-primary py-3">我們的甜點種類</h2>
+        <div class="row g-1">
+          <div class="col-md-3">
+            <div
+              class="card h-100 bg-transparent category border border-2 border-primary"
+            >
+              <div class="card-body text-center">
+                <h3 class="fs-3">蛋糕</h3>
+                <p>種類繁多，任君選擇</p>
+                <button
+                  type="button"
+                  class="btn btn-primary w-50 stretched-link"
+                  @click="lookProductCategory('蛋糕')"
+                >
+                  查看
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div
+              class="card h-100 bg-transparent category border border-2 border-primary"
+            >
+              <div class="card-body text-center">
+                <h3>酥皮</h3>
+                <p>口感紮實，甜而不膩</p>
+                <button
+                  type="button"
+                  class="btn btn-primary w-50 stretched-link"
+                  @click="lookProductCategory('酥皮')"
+                >
+                  查看
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div
+              class="card h-100 bg-transparent category border border-2 border-primary"
+            >
+              <div class="card-body text-center">
+                <h3>布丁</h3>
+                <p>Q 彈軟嫩，入口即化</p>
+                <button
+                  type="button"
+                  class="btn btn-primary w-50 stretched-link"
+                  @click="lookProductCategory('布丁')"
+                >
+                  查看
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div
+              class="card h-100 bg-transparent category border border-2 border-primary"
+            >
+              <div class="card-body text-center">
+                <h3>巧克力</h3>
+                <p>精選可可，擄獲您心</p>
+                <button
+                  type="button"
+                  class="btn btn-primary w-50 stretched-link"
+                  @click="lookProductCategory('巧克力')"
+                >
+                  查看
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -119,8 +216,8 @@
         <Swiper
           :slides-per-view="1"
           :space-between="50"
-          :autoplay="{ delay: 2000 }"
           :modules="modules"
+          :autoplay="{ delay: 2000 }"
           navigation
           :pagination="{ clickable: true }"
           :breakpoints="{
@@ -172,11 +269,8 @@
       </div>
     </section>
     <section
-      style="
-        background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649647580466.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=QKQnB3R2qf16YVsXYH4VCvK5OhVqd%2BcXX5KopdcPtOKk4exOeKWnFTn7E%2BM%2B6YVsV7w5DUrSSeqV5%2BLPWgVvChQDiFnt2vfFunr57AQoRSR%2B%2Bpn1GMs52j51%2BfdZq7z%2Fni%2F4AtPiUcN%2B2IRJWCljrTUubpnx4oxIYAZ8a%2BhgnzUljGlVugSnBFapkG2ZcnrdevA5EqViQASmuEADf9gsc5WSoO7Q6x9SFYlZ1U4%2FGSywrCVvs8p%2FYlL%2FAQoz7d%2F8nEBLG45yjpyuddG39VokFHtKQxvoK4L%2BlyVzR87LbGhe9KbqTwabcqBlxDs3oYibBBY0zMBIkXoZ6Za4cTfI%2BA%3D%3D);
-        background-size: cover;
-        background-attachment: fixed;
-      "
+      class="bg-p3"
+      style="background-size: cover; background-attachment: fixed"
     >
       <div class="container special-bg p-5">
         <h3 class="text-center text-white fs-5 fw-bold pb-3">
@@ -195,11 +289,11 @@
                   :class="{ 'is-invalid': errors['email'] }"
                   v-model="email"
                   placeholder="請輸入 Email"
-                ></VField>
+                />
                 <ErrorMessage
                   name="email"
                   class="invalid-feedback fw-bold text-warning"
-                ></ErrorMessage>
+                />
               </div>
               <div class="w-25 text-nowrap">
                 <button
@@ -219,7 +313,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, Autoplay } from "swiper";
@@ -281,6 +374,7 @@ export default {
           console.log(err.response.data);
         });
     },
+    // 訂閱電子報
     subscribeInfo() {
       if (this.email == "") {
         this.$swal.fire({
@@ -296,6 +390,49 @@ export default {
       });
       this.email = "";
     },
+    // 類別或是單一產品搜尋
+    searchProduct() {
+      if (this.search == "") {
+        this.$swal.fire({
+          icon: "warning",
+          title: "不能輸入空的內容",
+        });
+        return;
+      }
+      const filterWord = this.products.filter((item) => {
+        return (
+          item.title.match(this.search) || item.category.match(this.search)
+        );
+      });
+      if (filterWord.length == 0) {
+        this.$swal.fire({
+          icon: "error",
+          title: "沒有相關甜點喔",
+        });
+        return;
+      }
+
+      filterWord.forEach((item) => {
+        if (this.search == item.category) {
+          this.$router.push({
+            name: "產品列表",
+            query: { category: this.search },
+          });
+        } else if (this.search == item.title) {
+          this.$router.push({
+            name: "個別產品",
+            params: { id: item.id },
+          });
+        }
+      });
+    },
+    //查看產品種類
+    lookProductCategory(category) {
+      this.$router.push({
+        name: "產品列表",
+        query: { category: category },
+      });
+    },
   },
   mounted() {
     this.getProducts();
@@ -306,14 +443,12 @@ export default {
 
 <style lang="scss" scoped>
 .home-special {
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0.5;
+  background-color: rgba(248, 184, 8, 0.575);
   transition: 0.5s;
   transform: scale(0.9);
 }
 
 .home-special:hover {
-  opacity: 1;
   transform: scale(1);
 }
 
@@ -343,6 +478,27 @@ export default {
 
 .w-51 {
   width: 51%;
+}
+
+.category:hover {
+  background-color: #3c3f5f !important;
+  color: white;
+  button {
+    background-color: #ffd34c;
+    color: black;
+  }
+}
+
+.bg-p1 {
+  background-image: url(../assets/images/home01.jpg);
+}
+
+.bg-p2 {
+  background-image: url(../assets/images/home05.jpg);
+}
+
+.bg-p3 {
+  background-image: url(../assets/images/home06.jpg);
 }
 
 @media (max-width: 768px) {

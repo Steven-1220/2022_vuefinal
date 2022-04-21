@@ -1,5 +1,5 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
   <h2 class="text-center pt-4">優惠券</h2>
   <div class="container">
     <div class="text-end mt-4">
@@ -29,12 +29,14 @@
           <td>
             <div class="btn-group">
               <button
+                type="button"
                 class="btn btn-outline-success btn-sm"
                 @click="openModal('edit', item)"
               >
                 編輯
               </button>
               <button
+                type="button"
                 class="btn btn-outline-danger btn-sm"
                 @click="openModal('delete', item)"
               >
@@ -51,17 +53,18 @@
     :is-new="isNew"
     @update-coupon="updateCoupon"
     ref="couponModalRef"
-  ></CouponModal>
+  />
   <DeleteCouponModal
     :delete-coupon-item="tempCoupon"
     @get-coupons="getCoupon"
     ref="delCouponModalRef"
-  ></DeleteCouponModal>
+  />
 </template>
 
 <script>
 import CouponModal from "@/components/CouponModal.vue";
 import DeleteCouponModal from "@/components/DeleteCouponModal.vue";
+
 export default {
   components: {
     CouponModal,
@@ -87,7 +90,6 @@ export default {
       this.$http
         .get(url, this.tempProduct)
         .then((res) => {
-          // console.log(res.data);
           this.coupons = res.data.coupons;
           this.isLoading = false;
         })

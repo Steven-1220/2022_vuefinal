@@ -58,6 +58,15 @@ export default {
 
 <style lang="scss" scoped>
 #go-top {
+  position: fixed;
+  right: 10px;
+  bottom: 20px;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid #222;
+  color: #000;
+  background: #ffd34c;
+  padding: 10px;
   cursor: pointer;
 }
 </style>

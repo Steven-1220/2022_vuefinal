@@ -37,9 +37,7 @@
           >
             取消
           </button>
-          <!-- <button type="button" class="btn btn-danger" @click="deleteOrder">
-            確認刪除
-          </button> -->
+
           <div v-if="isAllOrders">
             <button
               type="button"
@@ -62,6 +60,7 @@
 
 <script>
 import Modal from "bootstrap/js/dist/modal";
+
 export default {
   data() {
     return {

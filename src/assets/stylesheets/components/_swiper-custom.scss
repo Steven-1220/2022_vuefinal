@@ -1,9 +1,13 @@
 .swiper-button-prev {
   left: -2px !important;
-  right: auto;
+  color: #3C3F5F !important;
 }
 
 .swiper-button-next {
   right: -2px !important;
-  left: auto;
+  color: #3C3F5F !important;
+}
+
+.swiper {
+  padding: 25px !important;
 }

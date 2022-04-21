@@ -1,5 +1,5 @@
 <template>
-  <ToastMessage></ToastMessage>
+  <ToastMessage />
 
   <nav class="navbar px-0 navbar-expand-lg navbar-light bg-warning">
     <div
@@ -34,7 +34,7 @@
     </div>
   </nav>
 
-  <RouterView v-if="checkSuccess"></RouterView>
+  <RouterView v-if="checkSuccess" />
 </template>
 
 <script>

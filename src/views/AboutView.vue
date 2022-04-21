@@ -1,6 +1,6 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
-  <div class="wrap bg-warning">
+  <VueLoading :active="isLoading" />
+  <div class="wrap bg-warning bg-gradient">
     <div class="container py-5">
       <h2 class="text-center pb-4">關於我們(SweetHome)</h2>
       <div class="row justify-content-center">
@@ -8,7 +8,7 @@
           class="col-md-12 col-lg-6 d-flex justify-content-center align-items-center"
         >
           <img
-            src="https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649521387733.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=YGnhh9tGIa3NY%2BLB8H7uCF2O6HENoAOW%2FQJ8NXtCca4PDjA41zLGDl0WIuoyJjZ7MkzycgkTGXNtyj66NFhBKmDxWXiNVlJp80tq3sqSxE9zbdodRouQRIbF8Qw3tioP7Rou8yOKi2hjhg88I0pMbE%2BvPkz2oTbzT8QcewpbOCZd1MOQ0pY85Da44kCmnhct44HSg%2Bh5rY7zEfsCUryh0RUSTuAiaIP6ryJV93zIgkri688obLrJS4VDD8Hq4DILa%2FIEOAaDcBA6oAWMoRciQdLiZQaXiZSQgL6MeazUcaC2Z6K97GGPDLJBlSy4s11gnGFcR1QBql1dB0KaYILUyQ%3D%3D"
+            src="../assets/images/about.jpg"
             alt="關於我們"
             style="height: 70%; object-fit: cover"
             class="img-fluid w-md-50 w-sm-100"
@@ -65,6 +65,8 @@
 </template>
 
 <script>
+import emitter from "@/libraries/emitter";
+
 export default {
   data() {
     return {
@@ -81,6 +83,7 @@ export default {
   },
   mounted() {
     this.LoadingEffect();
+    emitter.emit("toggle-menu");
   },
 };
 </script>

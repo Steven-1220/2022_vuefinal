@@ -32,6 +32,7 @@
 
 <script>
 import emitter from "@/libraries/emitter";
+
 export default {
   data() {
     return {
@@ -40,7 +41,7 @@ export default {
       messages: [],
     };
   },
-  // inject: ['emitter'],
+
   methods: {
     toastShow() {
       // 移除 messages 內容

@@ -51,6 +51,11 @@
             >
           </li>
           <li class="nav-item mx-2">
+            <RouterLink class="nav-link underline-effect" to="/user/favorite"
+              >我的最愛</RouterLink
+            >
+          </li>
+          <li class="nav-item mx-2">
             <RouterLink
               class="nav-link underline-effect position-relative"
               to="/user/cart"

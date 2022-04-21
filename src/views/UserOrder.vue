@@ -30,7 +30,7 @@
     <!-- 訂單資訊 -->
 
     <section class="py-md-5">
-      <VueLoading :active="isLoading"></VueLoading>
+      <VueLoading :active="isLoading" />
       <div class="container py-5">
         <div class="row">
           <div class="col-md-6 pb-3">
@@ -93,11 +93,8 @@
                       :class="{ 'is-invalid': errors['email'] }"
                       placeholder="請輸入 Email"
                       v-model="form.user.email"
-                    ></VField>
-                    <ErrorMessage
-                      name="email"
-                      class="invalid-feedback"
-                    ></ErrorMessage>
+                    />
+                    <ErrorMessage name="email" class="invalid-feedback" />
                   </div>
 
                   <div class="mb-3">
@@ -113,11 +110,8 @@
                       placeholder="請輸入姓名"
                       rules="required"
                       v-model="form.user.name"
-                    ></VField>
-                    <ErrorMessage
-                      name="姓名"
-                      class="invalid-feedback"
-                    ></ErrorMessage>
+                    />
+                    <ErrorMessage name="姓名" class="invalid-feedback" />
                   </div>
 
                   <div class="mb-3">
@@ -133,11 +127,8 @@
                       placeholder="請輸入電話"
                       :rules="isPhone"
                       v-model="form.user.tel"
-                    ></VField>
-                    <ErrorMessage
-                      name="電話"
-                      class="invalid-feedback"
-                    ></ErrorMessage>
+                    />
+                    <ErrorMessage name="電話" class="invalid-feedback" />
                   </div>
 
                   <div class="mb-3">
@@ -153,11 +144,8 @@
                       placeholder="請輸入地址"
                       rules="required"
                       v-model="form.user.address"
-                    ></VField>
-                    <ErrorMessage
-                      name="地址"
-                      class="invalid-feedback"
-                    ></ErrorMessage>
+                    />
+                    <ErrorMessage name="地址" class="invalid-feedback" />
                   </div>
 
                   <div class="mb-3">
@@ -178,10 +166,7 @@
                       <option value="ATM 轉帳">ATM 轉帳</option>
                       <option value="超商取貨付款">超商取貨付款</option>
                     </VField>
-                    <ErrorMessage
-                      name="付款方式"
-                      class="invalid-feedback"
-                    ></ErrorMessage>
+                    <ErrorMessage name="付款方式" class="invalid-feedback" />
                   </div>
 
                   <div class="mb-3">
@@ -254,7 +239,6 @@ export default {
           this.loadingState = false;
           this.form.message = "";
           this.$router.push({ name: "完成訂單", query: { id: this.orderId } });
-          emitter.emit("get-cart");
         })
         .catch((err) => {
           console.log(err.response.data);

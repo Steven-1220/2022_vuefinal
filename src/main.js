@@ -1,21 +1,28 @@
 import { createApp } from "vue";
+
 import "bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
+
 import axios from "axios";
 import VueAxios from "vue-axios";
+
 // 讀取效果
 import VueLoading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+
 // 表單驗證
 import { Form, Field, ErrorMessage, defineRule, configure } from "vee-validate";
 import AllRules from "@vee-validate/rules";
 import { localize, setLocale } from "@vee-validate/i18n";
 import zhTW from "@vee-validate/i18n/dist/locale/zh_TW.json";
+
 // 自訂義方法
 import $httpMessageState from "@/libraries/pushMessageState";
-// 加入 Sweetalert2
+import { numberAddComma } from "@/libraries/filters";
+
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+
 import App from "./App.vue";
 import router from "./router";
 
@@ -32,8 +39,10 @@ setLocale("zh_TW");
 
 const app = createApp(App);
 
+app.config.globalProperties.$filters = { numberAddComma };
 // 將 $httpMessageState 加入全域
 app.config.globalProperties.$httpMessageState = $httpMessageState;
+
 app.use(router);
 app.use(VueAxios, axios);
 // 使用 Sweetalert2

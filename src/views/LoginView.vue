@@ -1,5 +1,5 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
   <html>
     <body>
       <div class="container login w-25 mt-5">
@@ -69,6 +69,7 @@ export default {
         })
         .catch((err) => {
           alert(err.response.data.message);
+          this.user.password = "";
         });
     },
     loadingEffect() {

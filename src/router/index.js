@@ -33,6 +33,7 @@ const routes = [
           {
             //個別產品資訊
             path: "product/:id",
+            name: "個別產品",
             component: () => import("../views/ProductView.vue"),
           },
           {
@@ -55,6 +56,11 @@ const routes = [
             // 付款完成
             path: "pay",
             component: () => import("../views/UserOrderPay.vue"),
+          },
+          {
+            // 我的最愛
+            path: "favorite",
+            component: () => import("../views/MyFavorite.vue"),
           },
           {
             // 關於我們
@@ -109,13 +115,20 @@ const router = createRouter({
   routes,
   linkActiveClass: "active",
   scrollBehavior(to) {
-    // 若到達的路徑符合 product 字串，就觸發 if 判斷式
+    // 若到達的路徑符合 match() 內的字串，就觸發 if 判斷式
     if (to.fullPath.match("product")) {
       return {
         top: 0,
       };
+    } else if (to.fullPath.match("about")) {
+      return {
+        top: 0,
+      };
+    } else if (to.fullPath.match("material")) {
+      return {
+        top: 0,
+      };
     }
-    return {};
   },
 });
 

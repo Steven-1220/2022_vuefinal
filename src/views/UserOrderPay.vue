@@ -1,5 +1,5 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
   <div class="wrap">
     <section class="pt-5">
       <div class="container">

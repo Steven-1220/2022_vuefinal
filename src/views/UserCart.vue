@@ -1,5 +1,5 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
   <div class="wrap">
     <section class="pt-5">
       <div class="container">
@@ -41,18 +41,16 @@
           </template>
 
           <div class="col-12 col-md-6">
-            <h3>我的最愛商品</h3>
+            <h3>我的最愛甜點</h3>
             <p>
-              <button
+              <RouterLink
                 class="btn btn-primary fs-5"
                 type="button"
-                @click="openMyFavorite"
+                to="/user/favorite"
               >
                 查看 <i class="bi bi-search"></i>
-              </button>
+              </RouterLink>
             </p>
-
-            <MyFavoriteModal ref="favModalRef"></MyFavoriteModal>
           </div>
         </div>
         <div class="row py-5">
@@ -89,7 +87,7 @@
                         </th>
                       </tr>
                     </thead>
-                    <!-- text-wrap text-sm-nowrap -->
+
                     <tbody class="text-nowrap">
                       <tr v-for="item in cartData.carts" :key="item.id">
                         <td>
@@ -128,7 +126,9 @@
                             <small class="text-success">折扣價：</small>
                             $ {{ item.total - item.final_total }}
                           </div>
-                          <div v-else>$ {{ item.final_total }}</div>
+                          <div v-else>
+                            $ {{ $filters.numberAddComma(item.final_total) }}
+                          </div>
                         </td>
                       </tr>
                     </tbody>
@@ -165,7 +165,7 @@
               <button
                 class="btn btn-outline-secondary text-primary"
                 type="button"
-                :disabled="cartData.carts.length === 0"
+                :disabled="cartData.carts.length === 0 || enterCouponState"
                 @click="addCoupon"
               >
                 套用優惠碼
@@ -189,28 +189,29 @@
 
 <script>
 import emitter from "@/libraries/emitter";
-import MyFavoriteModal from "@/components/MyFavoriteModal.vue";
 
 export default {
-  components: {
-    MyFavoriteModal,
-  },
   data() {
     return {
       cartData: {
         carts: [],
       },
-      // products: [],
       discountCode: "",
+      enterCouponState: true,
       loadingState: "",
       isLoading: false,
     };
   },
-  methods: {
-    openMyFavorite() {
-      this.$refs.favModalRef.toggleFav();
+  watch: {
+    discountCode() {
+      if (this.discountCode !== "") {
+        this.enterCouponState = false;
+      } else {
+        this.enterCouponState = true;
+      }
     },
-
+  },
+  methods: {
     // 取得購物車列表資訊
     getCartList() {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;

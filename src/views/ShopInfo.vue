@@ -1,12 +1,12 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
   <div class="wrap">
     <div class="container mt-5">
       <h2 class="text-center">購物須知</h2>
       <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center">
           <img
-            src="https://storage.googleapis.com/vue-course-api.appspot.com/steven1220/1649521885012.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=MK9uBKlEUMhkEaOY2AA4MU94cVQ9OdC9sWiscp4kcVsldgVx5tewIEr3nSeZxdK8OHkaJz%2FO%2F9I3YBrM0quAsy90efhV4BKkE9xHhC9zuzxfPxmAx4JekUjgrHEphUxKKv3DB0HdLD1CoS4lRKzTwUJBBs2bNh6ckGOlrxAUKqGNX1n8E6zV67zhgVASMS8fUo2Q%2FBf811ivyntf4lv55%2BIaz%2Frtu5kUEu7sWE0kRBs2NMrKi5qWmytlKI3ELfiQNvKiJ9uJAMpUin%2FllfF%2F0VqQ16Q1pb69dhuUp9FyMTyTeT5HIIXfAcbuAc4v0cjpDemezYZXLgSHiosppJa74Q%3D%3D"
+            src="../assets/images/notice.jpg"
             alt="購物須知"
             style="width: 50%; height: 70%; object-fit: cover"
           />

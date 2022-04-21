@@ -1,5 +1,5 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
   <h2 class="text-center pt-4">產品列表</h2>
   <div class="container">
     <div class="row py-3">
@@ -57,23 +57,20 @@
       </div>
     </div>
     <!-- 分頁元件 -->
-    <PaginationView
-      :pages="pagination"
-      @emit-get-page="getAllProducts"
-    ></PaginationView>
+    <PaginationView :pages="pagination" @emit-get-page="getAllProducts" />
     <!-- 新增或編輯產品元件 -->
     <AdminProductModal
       :product-mod="tempProduct"
       :is-new="isNew"
       @update-product="updateProduct"
       ref="productModalRef"
-    ></AdminProductModal>
+    />
     <!-- 刪除產品 Modal -->
     <DeleteModal
       :del-product-item="tempProduct"
       @get-products="getAllProducts"
       ref="delProductModalRef"
-    ></DeleteModal>
+    />
   </div>
 </template>
 
@@ -81,6 +78,7 @@
 import PaginationView from "@/components/PaginationView.vue";
 import AdminProductModal from "@/components/AdminProductModal.vue";
 import DeleteModal from "@/components/DeleteModal.vue";
+
 export default {
   components: {
     PaginationView,

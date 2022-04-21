@@ -1,10 +1,10 @@
 <template>
-  <Navbar></Navbar>
+  <Navbar />
   <div class="wrap">
-    <RouterView></RouterView>
+    <RouterView />
   </div>
 
-  <FooterView></FooterView>
+  <FooterView />
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <VueLoading :active="isLoading"></VueLoading>
+  <VueLoading :active="isLoading" />
   <div class="wrap">
     <section class="pt-5">
       <div class="container">
@@ -126,7 +126,7 @@
                 <RouterLink
                   to="/user/pay"
                   class="btn btn-danger"
-                  @click="payOrder()"
+                  @click="payOrder"
                   >確認付款</RouterLink
                 >
               </div>
@@ -176,20 +176,7 @@ export default {
             item.total - item.final_total;
             finalPrice += item.total - item.final_total;
           });
-
           this.finalOrderPrice = finalPrice;
-        })
-        .catch((err) => {
-          console.log(err.response.data);
-        });
-    },
-    // 取得購物車列表資訊
-    getCartList() {
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;
-      this.$http
-        .get(url)
-        .then((res) => {
-          this.cartData = res.data.data;
           emitter.emit("get-cart");
           emitter.emit("toggle-menu");
         })
@@ -210,7 +197,6 @@ export default {
     },
   },
   mounted() {
-    this.getCartList();
     this.getOrder(this.$route.query.id);
   },
 };

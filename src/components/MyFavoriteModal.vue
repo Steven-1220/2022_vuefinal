@@ -2,12 +2,12 @@
   <div class="collapse" ref="myFavRef">
     <ul class="list-group" v-for="item in products" :key="item.id">
       <li
-        class="list-group-item list-group-item-action d-flex justify-content-between"
+        class="list-group-item d-flex justify-content-between"
         v-if="favorite.includes(item.id)"
       >
         <RouterLink
           :to="`product/${item.id}`"
-          class="text-decoration-none d-block link-primary fw-bold"
+          class="text-decoration-none d-block btn btn-warning link-primary fw-bold"
           >{{ item.title }}</RouterLink
         >
         <button

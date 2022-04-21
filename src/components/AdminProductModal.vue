@@ -41,7 +41,7 @@
                       class="form-control"
                       type="file"
                       ref="fileRef"
-                      @change="uploadMainImg()"
+                      @change="uploadMainImg"
                     />
                   </div>
                 </div>
@@ -69,7 +69,7 @@
                       class="form-control"
                       type="file"
                       ref="fileRef"
-                      @change="uploadMain()"
+                      @change="uploadMain"
                     />
                   </div>
                   <!-- :src="tempProduct.imagesUrl[index]" 也可以寫成 :src="img" -->
