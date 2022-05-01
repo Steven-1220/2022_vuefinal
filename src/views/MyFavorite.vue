@@ -16,7 +16,7 @@
     </div>
     <template v-if="favorite.length !== 0">
       <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-        <div class="col" v-for="item in favProduct" :key="item.id">
+        <div class="col" v-for="item in favProducts" :key="item.id">
           <div class="card h-100 position-relative">
             <div class="card-body text-center">
               <RouterLink :to="`product/${item.id}`" class="d-block">
@@ -40,7 +40,7 @@
                 >
                   原價 NT$ <span class="fs-5">{{ item.origin_price }}</span>
                 </div>
-                <div class="text-center text-dark mt-2">
+                <div class="text-center text-danger fw-bold mt-2">
                   特價 NT$ <span class="fs-5">{{ item.price }}</span>
                 </div>
               </div>
@@ -93,7 +93,7 @@ export default {
   data() {
     return {
       products: [],
-      favProduct: [],
+      favProducts: [],
       favorite: JSON.parse(localStorage.getItem("favorite")) || [],
       loadingState: false,
       isLoading: false,
@@ -109,7 +109,6 @@ export default {
     },
   },
   methods: {
-    // 取得所有產品
     getAllProducts() {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`;
@@ -124,17 +123,31 @@ export default {
           console.log(err.response.data);
         });
     },
-    // 選出我的最愛
     filterMyFav() {
-      this.favProduct = this.products.filter(
+      this.favProducts = this.products.filter(
         (item) => this.favorite.indexOf(item.id) !== -1,
       );
     },
-    // 刪除我的最愛
     delMyFavorite(id) {
-      const heartIndex = this.favorite.findIndex((item) => item === id);
-      this.favorite.splice(heartIndex, 1);
+      const delHeartIndex = this.favorite.findIndex((item) => item === id);
+      const delFavProduct = this.favProducts.filter((item) => {
+        return item.id === id;
+      });
+
+      this.favorite.splice(delHeartIndex, 1);
       this.getAllProducts();
+      setTimeout(() => {
+        this.$swal.fire({
+          title: `<i class="text-danger bi bi-heartbreak-fill"></i> 已刪除 ${delFavProduct[0].title} `,
+          confirmButtonColor: "#3C3F5F",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+      }, 500);
     },
     addToCart(id) {
       const data = {
@@ -165,7 +178,6 @@ export default {
             title: "成功加入購物車",
           });
 
-          // 觸發監聽
           emitter.emit("get-cart");
           this.loadingState = false;
         })

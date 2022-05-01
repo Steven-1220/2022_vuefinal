@@ -16,7 +16,7 @@ import AllRules from "@vee-validate/rules";
 import { localize, setLocale } from "@vee-validate/i18n";
 import zhTW from "@vee-validate/i18n/dist/locale/zh_TW.json";
 
-// 自訂義方法
+// 自定義方法
 import $httpMessageState from "@/libraries/pushMessageState";
 import { numberAddComma } from "@/libraries/filters";
 

@@ -109,7 +109,6 @@ export default {
         this.$refs.couponModalRef.open();
         this.isNew = true;
       } else if (state == "edit") {
-        // 使用深拷貝
         this.tempCoupon = JSON.parse(JSON.stringify(item));
         this.$refs.couponModalRef.open();
         this.isNew = false;
@@ -119,13 +118,10 @@ export default {
       }
     },
 
-    //新增 coupon 或修改 coupon
     updateCoupon() {
-      // 新增
       let url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon`;
       let methods = "post";
       let state = "新增優惠券";
-      //根據 isNew 來判斷要串接 post 或是 put API，當 isNew 是  false 才進入編輯
       if (!this.isNew) {
         url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`;
         methods = "put";

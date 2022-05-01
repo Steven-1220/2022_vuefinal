@@ -59,7 +59,6 @@ export default {
     close() {
       this.delProductModal.hide();
     },
-    //刪除產品
     deleteProduct() {
       this.$http
         .delete(

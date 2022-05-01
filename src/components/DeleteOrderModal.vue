@@ -82,7 +82,6 @@ export default {
     close() {
       this.delOrderModal.hide();
     },
-    //刪除訂單
     deleteOrder() {
       this.$http
         .delete(
@@ -96,7 +95,6 @@ export default {
           console.log(err.response.data);
         });
     },
-    // 刪除所有訂單
     deleteAllOrder() {
       this.$http
         .delete(

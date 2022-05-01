@@ -56,16 +56,16 @@
         </p>
       </div>
     </div>
-    <!-- 分頁元件 -->
+
     <PaginationView :pages="pagination" @emit-get-page="getAllProducts" />
-    <!-- 新增或編輯產品元件 -->
+
     <AdminProductModal
       :product-mod="tempProduct"
       :is-new="isNew"
       @update-product="updateProduct"
       ref="productModalRef"
     />
-    <!-- 刪除產品 Modal -->
+
     <DeleteModal
       :del-product-item="tempProduct"
       @get-products="getAllProducts"
@@ -113,7 +113,6 @@ export default {
           console.log(err.data);
         });
     },
-    // 開啟模組
     openModal(state, item) {
       console.log(state, item);
       if (state == "new") {

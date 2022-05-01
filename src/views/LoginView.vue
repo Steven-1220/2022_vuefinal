@@ -64,7 +64,6 @@ export default {
           const { token, expired } = res.data;
           // 回傳的 token 存到 hexToken
           document.cookie = `myToken=${token}; expires=${new Date(expired)};`;
-          // 轉址到 後台產品列表
           this.$router.push("/admin/products");
         })
         .catch((err) => {

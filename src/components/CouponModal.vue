@@ -124,7 +124,7 @@ export default {
       this.tempCoupon = this.coupon;
       // 將時間格式改為 YYYY-MM-DD
       const date = new Date(this.tempCoupon.due_date * 1000);
-      const dateType = date.toLocaleDateString();
+      const dateType = date.toISOString().split("T")[0];
       this.due_date = dateType;
     },
     due_date() {

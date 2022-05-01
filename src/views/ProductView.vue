@@ -1,6 +1,6 @@
 <template>
   <VueLoading :active="isLoading" />
-  <div class="container p-5">
+  <div class="container px-4 py-5">
     <h3 class="fs-3">個別產品詳細內容</h3>
     <div class="row g-5 mb-4">
       <div class="col-md-6">
@@ -43,9 +43,11 @@
         </div>
         <div v-else>
           <p class="text-decoration-line-through h5">
-            原價: {{ product.origin_price }} / {{ product.unit }}
+            原價 NT$ : {{ product.origin_price }} / {{ product.unit }}
           </p>
-          <p class="h4">特價: {{ product.price }} / {{ product.unit }}</p>
+          <p class="h4 text-danger fw-bold">
+            特價 NT$ : {{ product.price }} / {{ product.unit }}
+          </p>
         </div>
         <div class="row mb-2">
           <div class="col">
@@ -96,7 +98,7 @@
   </div>
 
   <section class="bg-warning">
-    <div class="container">
+    <div class="container px-4">
       <div class="row">
         <div class="col-md-6">
           <div class="align-items-center lh-lg py-5">
@@ -181,7 +183,7 @@
                     >
                       原價 NT$ <span class="fs-5">{{ item.origin_price }}</span>
                     </div>
-                    <div class="text-center text-dark mt-2">
+                    <div class="text-center text-danger fw-bold mt-2">
                       特價 NT$ <span class="fs-5">{{ item.price }}</span>
                     </div>
                   </div>
@@ -197,6 +199,7 @@
                   <button
                     type="button"
                     class="btn btn-primary"
+                    :disabled="loadingState === item.id"
                     @click="addToCart(item.id)"
                   >
                     加入購物車
@@ -242,7 +245,6 @@ export default {
   },
 
   methods: {
-    // 取得單一特定產品資訊
     getProductInfo() {
       this.isLoading = true;
       const id = this.$route.params.id;
@@ -260,7 +262,6 @@ export default {
           console.log(err.response.data);
         });
     },
-    // 加入購物車
     addToCart(id) {
       const data = {
         product_id: id,
@@ -290,9 +291,9 @@ export default {
             icon: "success",
             title: "成功加入購物車",
           });
-          // 觸發監聽
+
           emitter.emit("get-cart");
-          // 加入購物車後重置數量
+
           setTimeout(() => {
             this.quantity = 1;
           }, 1000);
@@ -302,7 +303,6 @@ export default {
         });
     },
 
-    // 取得同一種類產品
     getProduct(category) {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category}`;
       this.$http
@@ -320,12 +320,9 @@ export default {
         });
     },
 
-    //切換我的最愛
     switchFavorite() {
       const id = this.$route.params.id;
-
       const heartIndex = this.favorite.findIndex((item) => item === id);
-
       // 若沒有 heartIndex，就新增一個，反之則移除
       if (heartIndex === -1) {
         this.favorite.push(id);

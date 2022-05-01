@@ -5,7 +5,9 @@
         <div
           class="d-flex flex-column justify-content-center align-items-center"
         >
-          <h2 class="fs-1">限時優惠</h2>
+          <h2 class="fs-1">
+            限時 <span class="text-danger fw-bold"> 8折 </span>優惠
+          </h2>
           <p class="fs-3 text-danger">立刻領取折價券</p>
           <button
             type="button"

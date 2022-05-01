@@ -1,5 +1,5 @@
 <template>
-  <nav id="nav-top" class="navbar navbar-expand-lg py-4">
+  <nav id="nav-top" class="navbar navbar-expand-lg sticky-top bg-body py-4">
     <div class="container">
       <RouterLink
         class="navbar-brand fs-2 me-0 pt-0"

@@ -22,35 +22,35 @@
         <div class="list-group">
           <button
             type="button"
-            class="list-group-item list-group-item-action btn-hover-primary"
+            class="list-group-item btn-hover-primary"
             @click="getProduct(1)"
           >
             全部
           </button>
           <button
             type="button"
-            class="list-group-item list-group-item-action btn-hover-primary"
+            class="list-group-item btn-hover-primary"
             @click="getProduct(1, '蛋糕')"
           >
             蛋糕
           </button>
           <button
             type="button"
-            class="list-group-item list-group-item-action btn-hover-primary"
+            class="list-group-item btn-hover-primary"
             @click="getProduct(1, '酥皮')"
           >
             酥皮
           </button>
           <button
             type="button"
-            class="list-group-item list-group-item-action btn-hover-primary"
+            class="list-group-item btn-hover-primary"
             @click="getProduct(1, '布丁')"
           >
             布丁
           </button>
           <button
             type="button"
-            class="list-group-item list-group-item-action btn-hover-primary"
+            class="list-group-item btn-hover-primary"
             @click="getProduct(1, '巧克力')"
           >
             巧克力
@@ -84,8 +84,9 @@
                   >
                     原價 NT$ <span class="fs-5">{{ item.origin_price }}</span>
                   </div>
-                  <div class="text-center text-dark mt-2">
-                    特價 NT$ <span class="fs-5">{{ item.price }}</span>
+                  <div class="text-center text-danger mt-2">
+                    特價 NT$
+                    <span class="fs-5 fw-bold">{{ item.price }}</span>
                   </div>
                 </div>
               </div>
@@ -136,7 +137,6 @@ export default {
     };
   },
   methods: {
-    // 取得單一產品
     getProduct(page = 1, category) {
       this.isLoading = true;
 
@@ -157,8 +157,6 @@ export default {
           console.log(err.response.data);
         });
     },
-
-    // 加入購物車
     addToCart(id) {
       const data = {
         product_id: id,
@@ -188,7 +186,6 @@ export default {
             title: "成功加入購物車",
           });
 
-          // 觸發監聽
           emitter.emit("get-cart");
           this.loadingState = false;
         })
@@ -208,25 +205,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.move {
-  transform: translateY(0px);
-  transition: 0.8s;
-}
-
-.move:hover {
-  transform: translateY(-20px);
-}
-
 .special-bg {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.heart {
-  right: 20px;
-  top: 20px;
-}
-
 .bg-p1 {
   background-image: url(../assets/images/products.jpg);
+}
+
+@media (min-width: 992px) {
+  .move {
+    transform: translateY(0px);
+    transition: 0.8s;
+  }
+
+  .move:hover {
+    transform: translateY(-20px);
+  }
+  .btn-hover-primary:hover {
+    color: white;
+    background-color: #3c3f5f;
+  }
 }
 </style>

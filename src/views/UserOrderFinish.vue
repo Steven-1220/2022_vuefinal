@@ -139,7 +139,6 @@ export default {
   },
 
   methods: {
-    //取得訂單
     getOrder(orderId) {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order/${orderId}`;
@@ -149,7 +148,6 @@ export default {
           this.order = res.data.order;
           this.products = res.data.order.products;
           this.isLoading = false;
-
           // 若有使用優惠券總價格做以下處理
           let finalPrice = 0;
           Object.values(this.products).forEach((item) => {
@@ -164,7 +162,6 @@ export default {
           console.log(err.response.data);
         });
     },
-    //付款
     payOrder() {
       const orderId = this.$route.query.id;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${orderId}`;

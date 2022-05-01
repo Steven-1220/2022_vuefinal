@@ -68,15 +68,15 @@
         </p>
       </div>
     </div>
-    <!-- 分頁元件 -->
+
     <PaginationView :pages="pagination" @emit-get-page="getAllOrders" />
-    <!-- 訂單元件 -->
+
     <OrderModal
       :order-mod="tempOrder"
       @update-order="updateOrderState"
       ref="orderModalRef"
     />
-    <!-- 刪除訂單元件 -->
+
     <DeleteOrderModal
       :delete-order-item="tempOrder"
       :is-all-orders="isAllOrders"
@@ -125,7 +125,6 @@ export default {
     openModal(state, item) {
       console.log(state, item);
       if (state == "edit") {
-        // 使用深拷貝
         this.tempOrder = JSON.parse(JSON.stringify(item));
         this.$refs.orderModalRef.open();
         this.isNew = false;

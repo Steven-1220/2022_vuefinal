@@ -93,7 +93,6 @@
                     新增圖片
                   </button>
                 </div>
-                <!-- 若陣列有資料，顯示刪除按鈕，反之則不顯示 -->
                 <div v-if="tempProduct.imagesUrl.length !== 0">
                   <button
                     class="btn btn-outline-danger btn-sm d-block w-100"

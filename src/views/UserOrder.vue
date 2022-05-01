@@ -208,7 +208,6 @@ export default {
   },
 
   methods: {
-    //送出訂單
     sendOrder() {
       const order = this.form;
 
@@ -227,7 +226,6 @@ export default {
           console.log(err.response.data);
         });
     },
-    // 取得購物車列表資訊
     getCartList() {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;
       this.$http

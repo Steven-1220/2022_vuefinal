@@ -59,7 +59,6 @@ export default {
     close() {
       this.delCouponModal.hide();
     },
-    //刪除優惠券
     deleteCoupon() {
       this.$http
         .delete(

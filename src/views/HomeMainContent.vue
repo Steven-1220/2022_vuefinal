@@ -35,6 +35,7 @@
                 class="border border-1 w-50 p-2"
                 placeholder="搜尋甜點"
                 v-model="search"
+                @keyup.enter="searchProduct"
               />
               <button
                 type="button"
@@ -67,7 +68,7 @@
 
     <section class="py-4">
       <div class="container">
-        <div class="row mb-4 g-md-0">
+        <div class="row mb-4 g-0">
           <div class="col-md-6">
             <img
               src="../assets/images/home03.jpg"
@@ -80,12 +81,14 @@
           >
             <div class="pt-3 position-relative">
               <h2 class="text-primary text-center fw-bold">新鮮天然</h2>
-              <p class="lh-lg fs-4 text-lg-light">
-                使用高級的食材、健康的原物料， <br />
-                無添加人工香料、色素、防腐劑， <br />
+              <p class="lh-lg fs-4 text-lg-light p-md-3">
+                使用高級的食材、健康的原物料，
+                <br class="d-block d-md-none d-lg-block" />
+                無添加人工香料、色素、防腐劑，
+                <br class="d-block d-md-none d-lg-block" />
                 甜點也可以健康的吃。
               </p>
-              <div class="d-flex justify-content-center pb-md-3 pb-lg-0">
+              <div class="d-flex justify-content-center pb-3 pb-md-3">
                 <RouterLink
                   to="/user/material"
                   class="btn btn-primary w-50 stretched-link fs-4"
@@ -95,7 +98,7 @@
             </div>
           </div>
         </div>
-        <div class="row g-md-0 flex-md-row-reverse">
+        <div class="row g-0 flex-md-row-reverse">
           <div class="col-md-6">
             <img
               src="../assets/images/home04.jpg"
@@ -108,12 +111,12 @@
           >
             <div class="pt-3 position-relative">
               <h2 class="text-primary text-center fw-bold">精心製作</h2>
-              <p class="lh-lg fs-4 text-lg-light">
+              <p class="lh-lg fs-4 text-lg-light p-md-3">
                 師傅長年累積的經驗， <br />
                 獨創的手藝和訣竅， <br />
                 製作出層次豐富紮實的甜點。
               </p>
-              <div class="d-flex justify-content-center pb-md-3 pb-lg-0">
+              <div class="d-flex justify-content-center pb-3 pb-md-3">
                 <RouterLink
                   to="/user/about"
                   class="btn btn-primary w-50 stretched-link fs-4"
@@ -142,7 +145,7 @@
               class="card h-100 bg-transparent category border border-2 border-primary"
             >
               <div class="card-body text-center">
-                <h3 class="fs-3">蛋糕</h3>
+                <h3 class="fw-bold">蛋糕</h3>
                 <p>種類繁多，任君選擇</p>
                 <button
                   type="button"
@@ -159,7 +162,7 @@
               class="card h-100 bg-transparent category border border-2 border-primary"
             >
               <div class="card-body text-center">
-                <h3>酥皮</h3>
+                <h3 class="fw-bold">酥皮</h3>
                 <p>口感紮實，甜而不膩</p>
                 <button
                   type="button"
@@ -176,7 +179,7 @@
               class="card h-100 bg-transparent category border border-2 border-primary"
             >
               <div class="card-body text-center">
-                <h3>布丁</h3>
+                <h3 class="fw-bold">布丁</h3>
                 <p>Q 彈軟嫩，入口即化</p>
                 <button
                   type="button"
@@ -193,7 +196,7 @@
               class="card h-100 bg-transparent category border border-2 border-primary"
             >
               <div class="card-body text-center">
-                <h3>巧克力</h3>
+                <h3 class="fw-bold">巧克力</h3>
                 <p>精選可可，擄獲您心</p>
                 <button
                   type="button"
@@ -238,8 +241,11 @@
           <SwiperSlide v-for="item in products" :key="item.id">
             <div class="row">
               <div class="col">
-                <div class="card border-0 h-100 bg-warning">
+                <div class="card border-0 h-100 bg-warning position-relative">
                   <div class="card-body text-center">
+                    <div class="tag position-absolute bg-danger text-light p-2">
+                      優惠中
+                    </div>
                     <img
                       :src="item.imageUrl"
                       :alt="item.category"
@@ -316,7 +322,7 @@
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, Autoplay } from "swiper";
-// Import Swiper styles
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -374,7 +380,6 @@ export default {
           console.log(err.response.data);
         });
     },
-    // 訂閱電子報
     subscribeInfo() {
       if (this.email == "") {
         this.$swal.fire({
@@ -426,7 +431,6 @@ export default {
         }
       });
     },
-    //查看產品種類
     lookProductCategory(category) {
       this.$router.push({
         name: "產品列表",
@@ -444,12 +448,24 @@ export default {
 <style lang="scss" scoped>
 .home-special {
   background-color: rgba(248, 184, 8, 0.575);
-  transition: 0.5s;
-  transform: scale(0.9);
 }
 
-.home-special:hover {
-  transform: scale(1);
+@media (min-width: 992px) {
+  .home-special {
+    transition: 0.5s;
+    transform: scale(0.9);
+  }
+  .home-special:hover {
+    transform: scale(1);
+  }
+  .category:hover {
+    background-color: #3c3f5f !important;
+    color: white;
+    button {
+      background-color: #ffd34c;
+      color: black;
+    }
+  }
 }
 
 .special-bg {
@@ -480,15 +496,6 @@ export default {
   width: 51%;
 }
 
-.category:hover {
-  background-color: #3c3f5f !important;
-  color: white;
-  button {
-    background-color: #ffd34c;
-    color: black;
-  }
-}
-
 .bg-p1 {
   background-image: url(../assets/images/home01.jpg);
 }
@@ -501,11 +508,9 @@ export default {
   background-image: url(../assets/images/home06.jpg);
 }
 
-@media (max-width: 768px) {
-  .home-special {
-    background-color: white;
-    color: #000;
-    opacity: 1;
-  }
+.tag {
+  top: 0;
+  left: 0;
+  writing-mode: vertical-lr;
 }
 </style>
