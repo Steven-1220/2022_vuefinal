@@ -1,6 +1,6 @@
 <template>
   <nav id="nav-top" class="navbar navbar-expand-lg sticky-top bg-body py-4">
-    <div class="container">
+    <div class="container px-sm-0">
       <RouterLink
         class="navbar-brand fs-2 me-0 pt-0"
         style="white-space: normal"

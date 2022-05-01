@@ -67,7 +67,7 @@
     </section>
 
     <section class="py-4">
-      <div class="container">
+      <div class="container px-sm-0">
         <div class="row mb-4 g-0">
           <div class="col-md-6">
             <img
@@ -137,7 +137,7 @@
         background-attachment: fixed;
       "
     >
-      <div class="container">
+      <div class="container px-sm-0">
         <h2 class="text-center text-primary py-3">我們的甜點種類</h2>
         <div class="row g-1">
           <div class="col-md-3">
@@ -213,7 +213,7 @@
     </section>
 
     <section class="py-5">
-      <div class="container">
+      <div class="container px-sm-0">
         <h2 class="text-center text-primary py-3">熱門甜點</h2>
 
         <Swiper

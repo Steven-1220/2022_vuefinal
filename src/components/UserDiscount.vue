@@ -1,5 +1,5 @@
 <template>
-  <section class="container discount mt-3 mt-md-5">
+  <section class="container discount px-sm-0 mt-3 mt-md-5">
     <div class="row justify-content-center">
       <div class="col p-3 p-md-5">
         <div
