@@ -7,7 +7,7 @@
   transition: width 0.6s 0.3s;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .nav-item:hover .underline-effect::after {
     width: 100%;
   }

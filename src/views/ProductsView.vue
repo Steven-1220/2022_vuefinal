@@ -213,7 +213,7 @@ export default {
   background-image: url(../assets/images/products.jpg);
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .move {
     transform: translateY(0px);
     transition: 0.8s;

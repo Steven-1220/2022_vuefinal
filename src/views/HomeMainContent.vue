@@ -450,7 +450,7 @@ export default {
   background-color: rgba(248, 184, 8, 0.575);
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .home-special {
     transition: 0.5s;
     transform: scale(0.9);

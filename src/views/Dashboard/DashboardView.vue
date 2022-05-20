@@ -23,11 +23,6 @@
           >
         </li>
         <li class="nav-item">
-          <RouterLink class="nav-link ps-md-2" to="/admin/article"
-            >貼文</RouterLink
-          >
-        </li>
-        <li class="nav-item">
           <RouterLink class="nav-link ps-md-5" to="/login">登出</RouterLink>
         </li>
       </ul>
