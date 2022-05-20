@@ -1,4 +1,4 @@
-# week7-hw-dashboard
+# e-commerce-dessert
 
 ## Project setup
 ```
