@@ -19,7 +19,12 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"><i class="bi bi-list fs-2"></i></span>
+        <span
+          v-for="item in 3"
+          :key="item"
+          class="hamburger-line"
+          ref="hamburgerLine"
+        ></span>
       </button>
 
       <div class="collapse navbar-collapse" ref="myNavBarRef">
@@ -86,6 +91,7 @@ export default {
         carts: [],
       },
       navBarModal: {},
+      box: [],
     };
   },
   methods: {
@@ -102,9 +108,15 @@ export default {
     },
     toggleNav() {
       this.navBarModal.toggle();
+      this.switchHamburger();
     },
     closeNav() {
       this.navBarModal.hide();
+    },
+    switchHamburger() {
+      this.$refs.hamburgerLine.forEach((item) => {
+        item.classList.toggle("active");
+      });
     },
   },
   mounted() {
@@ -123,3 +135,48 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+// 漢堡選單按鈕
+.navbar-toggler {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.hamburger-line {
+  width: 20px;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  transition: transform 0.5s ease;
+}
+
+.hamburger-line:nth-child(1) {
+  transform-origin: 50% 50%;
+  transform: translate(-50%, -8px);
+}
+.hamburger-line:nth-child(2) {
+  transform: translateX(-50%);
+}
+.hamburger-line:nth-child(3) {
+  transform-origin: 50% 50%;
+  transform: translate(-50%, 8px);
+}
+
+.hamburger-line:nth-child(1).active {
+  transform: translate(-50%, 0px) rotate(45deg);
+}
+.hamburger-line:nth-child(2).active {
+  opacity: 0;
+}
+.hamburger-line:nth-child(3).active {
+  transform: translate(-50%, 0px) rotate(-45deg);
+}
+</style>

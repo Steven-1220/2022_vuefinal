@@ -63,7 +63,7 @@
     </div>
   </footer>
 
-  <div id="go-top" @click="goTop()">
+  <div id="go-top" @click="goTop()" v-show="isShow">
     <i class="bi bi-caret-up-fill fs-4"></i>
   </div>
 </template>
@@ -72,22 +72,27 @@
 export default {
   data() {
     return {
-      scrollNum: 0, //滾動距離
+      elementToTop: 0, // 初始捲軸距離視窗頂部的距離
+      isShow: false,
     };
   },
   methods: {
     goTop() {
       document.documentElement.scrollTop = 0;
     },
+    scrollStatus() {
+      const scrollToTop = window.scrollY; // 從視窗頂部開始捲軸已捲動的長度
+      this.elementToTop = scrollToTop;
+
+      if (this.elementToTop < 650) {
+        this.isShow = false;
+      } else {
+        this.isShow = true;
+      }
+    },
   },
   mounted() {
-    window.addEventListener("scroll", () => {
-      let top =
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        window.pageYOffset;
-      this.scrollNum = top;
-    });
+    window.addEventListener("scroll", this.scrollStatus);
   },
 };
 </script>
