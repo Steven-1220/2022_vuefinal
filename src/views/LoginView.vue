@@ -2,42 +2,58 @@
   <VueLoading :active="isLoading" />
   <html>
     <body>
-      <div class="container login w-25 mt-5">
-        <form
-          class="row g-3 border border-4 border-warning p-4"
-          @submit.prevent="login"
-        >
-          <h1 class="h3 mb-3 text-center font-weight-normal">請先登入</h1>
-          <div class="col-12">
-            <label for="username" class="form-label">帳號</label>
-            <input
-              type="text"
-              class="form-control"
-              id="username"
-              placeholder="name@example.com"
-              v-model="user.username"
-              required
-              autofocus
-            />
-          </div>
-          <div class="col-12">
-            <label for="password" class="form-label">密碼</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              v-model="user.password"
-              required
-            />
-          </div>
+      <div class="container login mt-5">
+        <div class="row justify-content-center px-3 px-sm-0">
+          <div class="col-12 col-md-6">
+            <form
+              class="row g-3 border border-4 border-primary p-4"
+              @submit.prevent="login"
+            >
+              <h1 class="mb-3 text-center text-danger fw-bold">請先登入</h1>
+              <div class="col-12">
+                <label
+                  for="username"
+                  class="form-label fw-bold text-danger fs-4"
+                  >帳號</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  placeholder="name@example.com"
+                  v-model="user.username"
+                  required
+                  autofocus
+                />
+              </div>
+              <div class="col-12">
+                <label
+                  for="password"
+                  class="form-label fw-bold text-danger fs-4"
+                  >密碼</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  v-model="user.password"
+                  required
+                />
+              </div>
 
-          <div class="col-md-6 text-nowrap">
-            <button type="submit" class="w-100 btn btn-primary">登入</button>
+              <div class="col-12 col-md-6 text-nowrap">
+                <button type="submit" class="w-100 btn btn-primary">
+                  登入
+                </button>
+              </div>
+              <div class="col-12 col-md-6 text-nowrap">
+                <RouterLink to="/" class="w-100 btn btn-primary"
+                  >回首頁</RouterLink
+                >
+              </div>
+            </form>
           </div>
-          <div class="col-md-6 text-nowrap">
-            <RouterLink to="/" class="w-100 btn btn-primary">回首頁</RouterLink>
-          </div>
-        </form>
+        </div>
       </div>
     </body>
   </html>
