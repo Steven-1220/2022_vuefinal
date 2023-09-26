@@ -72,7 +72,7 @@
           <div class="col-md-6">
             <img
               src="../assets/images/home03.jpg"
-              class="w-100"
+              class="w-100 h-100"
               alt="首頁產品特色圖片"
             />
           </div>
@@ -81,7 +81,7 @@
           >
             <div class="pt-3 position-relative">
               <h2 class="text-primary text-center fw-bold">新鮮天然</h2>
-              <p class="lh-lg fs-4 text-lg-light p-md-3">
+              <p class="lh-lg fs-4 text-lg-light p-2 p-md-3">
                 使用高級的食材、健康的原物料，
                 <br class="d-block d-md-none d-lg-block" />
                 無添加人工香料、色素、防腐劑，
@@ -102,7 +102,7 @@
           <div class="col-md-6">
             <img
               src="../assets/images/home04.jpg"
-              class="w-100"
+              class="w-100 h-100"
               alt="首頁產品特色圖片"
             />
           </div>
@@ -111,7 +111,7 @@
           >
             <div class="pt-3 position-relative">
               <h2 class="text-primary text-center fw-bold">精心製作</h2>
-              <p class="lh-lg fs-4 text-lg-light p-md-3">
+              <p class="lh-lg fs-4 text-lg-light p-2 p-md-3">
                 師傅長年累積的經驗， <br />
                 獨創的手藝和訣竅， <br />
                 製作出層次豐富紮實的甜點。
@@ -213,9 +213,8 @@
     </section>
 
     <section class="py-5">
-      <div class="container px-sm-0">
+      <div class="container position-relative px-sm-0">
         <h2 class="text-center text-primary py-3">熱門甜點</h2>
-
         <Swiper
           :slides-per-view="1"
           :space-between="50"

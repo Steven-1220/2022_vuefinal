@@ -109,5 +109,6 @@ export default {
   background: #ffd34c;
   padding: 10px;
   cursor: pointer;
+  z-index: 50;
 }
 </style>

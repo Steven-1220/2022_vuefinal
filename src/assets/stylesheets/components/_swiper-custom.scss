@@ -1,3 +1,11 @@
+body {
+  overflow-x: hidden;
+}
+
+.swiper {
+  position: static !important;
+}
+
 .swiper-button-prev {
   left: -2px !important;
   color: #3C3F5F !important;
@@ -14,4 +22,26 @@
 
 .swiper-pagination-horizontal {
   bottom: -4px !important;
+}
+
+@media (min-width: 992px) {
+
+  .swiper-button-prev {
+    left: -1% !important;
+  }
+
+  .swiper-button-next {
+    right: -1% !important;
+  }
+}
+
+@media (min-width: 1300px) {
+
+  .swiper-button-prev {
+    left: -2% !important;
+  }
+
+  .swiper-button-next {
+    right: -2% !important;
+  }
 }
