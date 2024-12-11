@@ -21,7 +21,7 @@ Elegant Cravings 法式甜點電商網站專案，主要使用 Vue CLI 建立的
 
 ## 使用技術 :
 
-- Vue3 Option API
+- Vue3 Option API 前端框架
 - Vue CLI
 - Vue Router
 - AJAX 串接 RESTful API
@@ -29,9 +29,8 @@ Elegant Cravings 法式甜點電商網站專案，主要使用 Vue CLI 建立的
 - Bootstrap 5
 - SCSS
 - RWD 響應式網頁
-- Swiper、 vee-validate、Sweetalert2、vue-loading-overlay 套件使用
 
-## 使用插件
+## 使用套件
 
 - axios
 - Swiper
