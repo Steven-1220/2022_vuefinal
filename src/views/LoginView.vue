@@ -2,13 +2,10 @@
   <VueLoading :active="isLoading" />
   <html>
     <body>
-      <div class="container login mt-5">
+      <div class="container login">
         <div class="row justify-content-center px-3 px-sm-0">
           <div class="col-12 col-md-6">
-            <form
-              class="row g-3 border border-4 border-primary p-4"
-              @submit.prevent="login"
-            >
+            <form class="row g-3 p-4 bg-warning" @submit.prevent="login">
               <h1 class="mb-3 text-center text-danger fw-bold">請先登入</h1>
               <div class="col-12">
                 <label
@@ -107,16 +104,17 @@ body {
 }
 
 body {
-  background-image: url("https://images.unsplash.com/photo-1536688261748-9d56b3acf077?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+  background-image: url(../assets/images/login-bg.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+.login {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.login {
-  height: 450px;
 }
 .login > form {
   background-color: rgba(0, 0, 0, 0.1);

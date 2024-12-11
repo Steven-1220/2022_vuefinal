@@ -1,78 +1,74 @@
 <template>
   <VueLoading :active="isLoading" />
-  <div class="container py-5">
-    <h2 class="text-center">
+  <div class="container-md py-5">
+    <h2 class="text-center mb-3 mb-md-4">
       我的最愛甜點<i class="bi bi-heart-fill text-danger"></i>
     </h2>
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center align-items-center">
+    <div class="row justify-content-center mb-4 mb-md-5">
+      <div class="col-10 d-flex justify-content-center">
         <img
           src="../assets/images/favorite.jpg"
           class="fav-img"
           alt="我的最愛"
-          style="height: 70%; object-fit: cover"
         />
       </div>
     </div>
-    <template v-if="favorite.length !== 0">
-      <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-        <div class="col" v-for="item in favProducts" :key="item.id">
-          <div class="card h-100 position-relative">
-            <div class="card-body text-center">
-              <RouterLink :to="`product/${item.id}`" class="d-block">
-                <img
-                  :src="item.imageUrl"
-                  :alt="item.category"
-                  class="img-fluid"
-                  style="height: 280px; object-fit: cover"
-                />
-              </RouterLink>
-              <div class="text-center text-dark mt-2">
-                <RouterLink
-                  :to="`product/${item.id}`"
-                  class="text-decoration-none d-block"
-                  >{{ item.title }}</RouterLink
-                >
-              </div>
-              <div class="d-flex align-items-center justify-content-around">
-                <div
-                  class="text-center text-muted text-decoration-line-through mt-2"
-                >
-                  原價 NT$ <span class="fs-5">{{ item.origin_price }}</span>
-                </div>
-                <div class="text-center text-danger fw-bold mt-2">
-                  特價 NT$ <span class="fs-5">{{ item.price }}</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-body d-flex justify-content-between">
-              <RouterLink
-                :to="`product/${item.id}`"
-                class="btn btn-outline-primary d-block"
-              >
-                查看產品
-              </RouterLink>
 
-              <button
-                type="button"
-                class="btn btn-primary"
-                :disabled="loadingState"
-                @click="addToCart(item.id)"
+    <template v-if="favorite.length !== 0">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <ul class="list-group list-group-flush">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center overflow-auto"
+              v-for="item in favProducts"
+              :key="item.id"
+            >
+              <RouterLink
+                class="d-flex text-decoration-none"
+                :to="`product/${item.id}`"
               >
-                加入購物車
-              </button>
-              <button
-                type="button"
-                class="btn btn-danger btn-sm position-absolute del-btn"
-                @click="delMyFavorite(item.id)"
-              >
-                <i class="bi bi-x-lg"></i>
-              </button>
-            </div>
-          </div>
+                <img :src="item.imageUrl" :alt="item.category" />
+                <div
+                  class="product-infos d-flex flex-md-row flex-column align-items-md-center ms-3 ms-lg-5"
+                >
+                  <h2 class="name mb-0 fw-bold">{{ item.title }}</h2>
+                  <div
+                    class="price d-flex flex-md-row flex-column align-items-md-center ms-md-4"
+                  >
+                    <div
+                      class="text-muted text-decoration-line-through fs-6 me-lg-3 me-2"
+                    >
+                      原價 NT$ <span class="fs-6">{{ item.origin_price }}</span>
+                    </div>
+                    <div class="text-danger fw-bold fs-6">
+                      特價 NT$ <span class="fs-5">{{ item.price }}</span>
+                    </div>
+                  </div>
+                </div>
+              </RouterLink>
+              <div class="d-flex">
+                <button
+                  type="button"
+                  class="btn btn-primary text-nowrap"
+                  :disabled="loadingState"
+                  @click="addToCart(item.id)"
+                >
+                  加入購物車
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger ms-2 ms-lg-3"
+                  @click="delMyFavorite(item.id)"
+                >
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </template>
+
     <div class="row" v-else>
       <div
         class="col-12 d-flex justify-content-center align-items-center flex-column"
@@ -194,20 +190,56 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.del-btn {
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-}
-@media (min-width: 768px) {
-  .fav-img {
-    width: 40%;
+.list-group-item {
+  &:hover {
+    background-color: #ffd34c;
+  }
+  img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover;
+  }
+  button {
+    font-size: 14px;
+    padding: 4px 6px;
+  }
+  @media (min-width: 768px) {
+    img {
+      max-width: 90px;
+      max-height: 90px;
+    }
+    button {
+      font-size: 16px;
+      padding: 6px 12px;
+    }
+  }
+  @media (min-width: 992px) {
+    img {
+      max-width: 120px;
+      max-height: 120px;
+    }
   }
 }
-@media (max-width: 767px) {
-  .fav-img {
-    width: 80%;
+
+.product-infos {
+  .name {
+    font-size: 16px;
+  }
+  @media (min-width: 992px) {
+    .name {
+      font-size: 20px;
+    }
+  }
+}
+
+.fav-img {
+  width: 70%;
+  @media (min-width: 768px) {
+    width: 40%;
+  }
+
+  @media (min-width: 992px) {
+    width: 30%;
   }
 }
 </style>

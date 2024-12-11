@@ -1,7 +1,7 @@
 <template>
   <VueLoading :active="isLoading" />
   <div class="wrap">
-    <ProgressView step="3" />
+    <ProgressView step="4" />
     <section class="py-md-5">
       <div class="container py-5">
         <div class="row">

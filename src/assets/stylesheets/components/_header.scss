@@ -1,6 +1,11 @@
 .main-header {
   background-position: center center;
   background-size: cover;
-  height: 65vh;
+  height: 40vh;
+  @media (min-width: 768px) {
+    height: 45vh;
+  }
+  @media (min-width: 992px) {
+    height: 55vh;
+  }
 }
-

@@ -101,7 +101,7 @@ const router = createRouter({
   routes,
   linkActiveClass: "active",
   scrollBehavior(to) {
-    if (to.fullPath.match("product")) {
+    if (to.name === "home") {
       return {
         top: 0,
       };
@@ -110,6 +110,10 @@ const router = createRouter({
         top: 0,
       };
     } else if (to.fullPath.match("material")) {
+      return {
+        top: 0,
+      };
+    } else if (to.fullPath.match("product")) {
       return {
         top: 0,
       };

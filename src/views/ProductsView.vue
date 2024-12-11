@@ -2,66 +2,89 @@
   <VueLoading :active="isLoading" />
 
   <header
-    class="container-fluid main-header px-5 py-5 mb-5 d-flex justify-content-center align-items-md-center bg-p1"
-    style="height: 400px; background-attachment: fixed"
+    class="container-fluid main-header px-5 py-5 mb-5 d-flex justify-content-center align-items-md-center bg-header"
   >
     <div
       class="text-white text-center special-bg p-4 d-flex flex-column justify-content-center text-wrap"
     >
-      <h2 class="fs-2 fs-sm-1 fw-bold">選擇您的幸褔甜點</h2>
-      <p class="fs-4 fs-sm-3">
-        每一種甜點都值得品嘗 <br />觸動您的味蕾 <br />感受到法式幸福的滋味
+      <h2 class="fw-bold text-warning mb-3">選擇您的幸褔甜點</h2>
+      <p class="mb-0">
+        每道甜點都是經典 <br />觸動您的味蕾 <br />傳遞法式幸福的氣息
       </p>
     </div>
   </header>
 
   <section class="container">
     <div class="row">
-      <div class="col-md-3 pt-3 text-center">
+      <div class="col-md-3 pt-3 mb-5 mb-md-0 text-center">
         <h4 class="fs-4 bg-warning text-dark py-3 mb-0">甜點種類</h4>
         <div class="list-group">
           <button
             type="button"
             class="list-group-item btn-hover-primary"
-            @click="getProduct(1)"
+            :class="{ active: categoryName === '全部' }"
+            @click="
+              getProduct(1);
+              changeCategoryStatus('全部');
+            "
           >
             全部
           </button>
           <button
             type="button"
             class="list-group-item btn-hover-primary"
-            @click="getProduct(1, '蛋糕')"
+            :class="{ active: categoryName === '蛋糕' }"
+            @click="
+              getProduct(1, '蛋糕');
+              changeCategoryStatus('蛋糕');
+            "
           >
             蛋糕
           </button>
           <button
             type="button"
             class="list-group-item btn-hover-primary"
-            @click="getProduct(1, '酥皮')"
+            :class="{ active: categoryName === '酥皮' }"
+            @click="
+              getProduct(1, '酥皮');
+              changeCategoryStatus('酥皮');
+            "
           >
             酥皮
           </button>
           <button
             type="button"
             class="list-group-item btn-hover-primary"
-            @click="getProduct(1, '布丁')"
+            :class="{ active: categoryName === '布丁' }"
+            @click="
+              getProduct(1, '布丁');
+              changeCategoryStatus('布丁');
+            "
           >
             布丁
           </button>
           <button
             type="button"
             class="list-group-item btn-hover-primary"
-            @click="getProduct(1, '巧克力')"
+            :class="{ active: categoryName === '巧克力' }"
+            @click="
+              getProduct(1, '巧克力');
+              changeCategoryStatus('巧克力');
+            "
           >
             巧克力
           </button>
         </div>
       </div>
       <div class="col-md-9 pb-4">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          <div class="col" v-for="item in products" :key="item.id">
-            <div class="card border-0 h-100 move">
-              <div class="card-body text-center position-relative">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+          <div
+            class="col d-flex justify-content-center"
+            v-for="item in products"
+            :key="item.id"
+          >
+            <div class="card card-product border-0 h-100 move">
+              <div class="card-body text-center position-relative px-0">
                 <RouterLink :to="`product/${item.id}`">
                   <img
                     :src="item.imageUrl"
@@ -91,7 +114,7 @@
                 </div>
               </div>
               <div
-                class="card-body d-flex justify-content-between text-wrap text-sm-nowrap"
+                class="card-body d-flex justify-content-between text-wrap text-sm-nowrap px-0"
               >
                 <RouterLink
                   :to="`product/${item.id}`"
@@ -132,6 +155,7 @@ export default {
       products: [],
       isLoading: false,
       loadingState: false,
+      categoryName: "",
       pagination: {},
       favorite: JSON.parse(localStorage.getItem("favorite")) || [],
     };
@@ -156,6 +180,9 @@ export default {
         .catch((err) => {
           console.log(err.response.data);
         });
+    },
+    changeCategoryStatus(category) {
+      this.categoryName = category;
     },
     addToCart(id) {
       const data = {
@@ -197,20 +224,46 @@ export default {
   mounted() {
     if (this.$route.query.category) {
       this.getProduct(1, this.$route.query.category);
+      this.changeCategoryStatus(this.$route.query.category);
     } else {
       this.getProduct();
+      this.changeCategoryStatus("全部");
     }
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.special-bg {
-  background-color: rgba(0, 0, 0, 0.3);
+.main-header {
+  height: 300px;
+  h2 {
+    font-size: 24px;
+  }
+
+  @media (min-width: 768px) {
+    height: 400px;
+    h2 {
+      font-size: 32px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
 }
 
-.bg-p1 {
-  background-image: url(../assets/images/products.jpg);
+.special-bg {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bg-header {
+  background-image: url(../assets/images/products-2.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card-product {
+  max-width: 360px;
 }
 
 @media (min-width: 1024px) {
@@ -224,7 +277,7 @@ export default {
   }
   .btn-hover-primary:hover {
     color: white;
-    background-color: #3c3f5f;
+    background-color: #1c2049;
   }
 }
 </style>

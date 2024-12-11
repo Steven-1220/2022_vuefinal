@@ -23,6 +23,11 @@ import { numberAddComma } from "@/libraries/filters";
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
+import "animate.css";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import App from "./App.vue";
 import router from "./router";
 
@@ -53,5 +58,7 @@ app.component("VueLoading", VueLoading);
 app.component("VForm", Form);
 app.component("VField", Field);
 app.component("ErrorMessage", ErrorMessage);
+
+AOS.init();
 
 app.mount("#app");

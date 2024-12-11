@@ -1,14 +1,21 @@
 <template>
-  <nav id="nav-top" class="navbar navbar-expand-lg sticky-top bg-body py-4">
+  <nav
+    id="nav-top"
+    class="navbar navbar-expand-lg sticky-top bg-body py-4 border-bottom"
+  >
     <div class="container px-sm-0">
       <RouterLink
         class="navbar-brand fs-2 me-0 pt-0"
         style="white-space: normal"
         to="/"
       >
-        <i class="bi bi-balloon-heart-fill"></i> SweetHome
+        <img
+          src="../assets/images/macaron-50.png"
+          class="logo"
+          alt="logo"
+        />Elegant Cravings
         <br class="d-block d-sm-none d-lg-block d-xl-none" />
-        經典法式甜點
+        法式甜點
       </RouterLink>
 
       <button
@@ -28,42 +35,54 @@
       </button>
 
       <div class="collapse navbar-collapse" ref="myNavBarRef">
-        <ul class="navbar-nav ms-auto fs-5 text-nowrap">
+        <ul class="navbar-nav ms-auto fs-5 text-nowrap text-center">
           <li class="nav-item mx-2">
             <RouterLink
-              class="nav-link active underline-effect"
+              class="nav-link underline-effect"
               aria-current="page"
               to="/user/about"
+              @click="closeOverflowStatus()"
               >關於我們</RouterLink
             >
           </li>
           <li class="nav-item mx-2">
             <RouterLink
-              class="nav-link active underline-effect"
+              class="nav-link underline-effect"
               aria-current="page"
               to="/user/material"
+              @click="closeOverflowStatus()"
               >原料與組成</RouterLink
             >
           </li>
           <li class="nav-item mx-2">
-            <RouterLink class="nav-link underline-effect" to="/user/products"
-              >相關產品</RouterLink
-            >
-          </li>
-          <li class="nav-item mx-2">
-            <RouterLink class="nav-link underline-effect" to="/user/notice"
-              >購物須知</RouterLink
-            >
-          </li>
-          <li class="nav-item mx-2">
-            <RouterLink class="nav-link underline-effect" to="/user/favorite"
-              >我的最愛</RouterLink
+            <RouterLink
+              class="nav-link underline-effect link-danger"
+              to="/user/products"
+              @click="closeOverflowStatus()"
+              >甜點產品</RouterLink
             >
           </li>
           <li class="nav-item mx-2">
             <RouterLink
+              class="nav-link underline-effect"
+              to="/user/notice"
+              @click="closeOverflowStatus()"
+              >購物須知</RouterLink
+            >
+          </li>
+          <li class="nav-item mx-2">
+            <RouterLink
+              class="nav-link underline-effect"
+              to="/user/favorite"
+              @click="closeOverflowStatus()"
+              >我的最愛</RouterLink
+            >
+          </li>
+          <li class="nav-item mx-2 mt-3 mt-lg-0">
+            <RouterLink
               class="nav-link underline-effect position-relative"
               to="/user/cart"
+              @click="closeOverflowStatus()"
               ><i class="bi bi-cart2"></i>
               <span
                 v-if="cartData.carts.length !== 0"
@@ -109,6 +128,14 @@ export default {
     toggleNav() {
       this.navBarModal.toggle();
       this.switchHamburger();
+      this.toggleOverflowStatus();
+    },
+    toggleOverflowStatus() {
+      document.body.classList.toggle("overflow-hidden");
+    },
+    closeOverflowStatus() {
+      document.body.classList.remove("overflow-hidden");
+      this.closeHamburger();
     },
     closeNav() {
       this.navBarModal.hide();
@@ -116,6 +143,11 @@ export default {
     switchHamburger() {
       this.$refs.hamburgerLine.forEach((item) => {
         item.classList.toggle("active");
+      });
+    },
+    closeHamburger() {
+      this.$refs.hamburgerLine.forEach((item) => {
+        item.classList.remove("active");
       });
     },
   },
@@ -137,6 +169,32 @@ export default {
 </script>
 
 <style lang="scss">
+.logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 12px;
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+  }
+}
+@media (max-width: 992px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    z-index: 100;
+    background-color: #fff;
+    transition: height 0.2s ease;
+  }
+  .navbar-collapse.show {
+    height: calc(100vh - 95px);
+  }
+}
+
 // 漢堡選單按鈕
 .navbar-toggler {
   width: 40px;

@@ -2,7 +2,7 @@
   <div class="wrap">
     <ProgressView step="2" />
     <!-- 訂單資訊 -->
-    <section class="py-md-5">
+    <section class="pb-md-5">
       <VueLoading :active="isLoading" />
       <div class="container py-5">
         <div class="row">

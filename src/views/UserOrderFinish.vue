@@ -2,8 +2,8 @@
   <VueLoading :active="isLoading" />
   <div class="wrap">
     <ProgressView step="3" />
-    <section class="py-md-5">
-      <div class="container py-5">
+    <section class="pb-md-5">
+      <div class="container pb-5">
         <div class="row py-5">
           <div class="col-md-6 pb-4">
             <div class="card">

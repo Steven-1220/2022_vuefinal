@@ -1,47 +1,75 @@
-body {
-  overflow-x: hidden;
-}
-
 .swiper {
   position: static !important;
-}
-
-.swiper-button-prev {
-  left: -2px !important;
-  color: #3C3F5F !important;
-}
-
-.swiper-button-next {
-  right: -2px !important;
-  color: #3C3F5F !important;
-}
-
-.swiper {
   padding: 25px !important;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+  width: 40px !important;
+  height: 40px !important;
+  background-color: #a02e38;
+  border-radius: 50%;
+  position: relative;
+  transform: translateY(50%);
+  // 隱藏原生的藍色箭頭
+  text-indent: 138%;
+  white-space: nowrap;
+  overflow: hidden;
+  &::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}
+
+.swiper-button-prev {
+  &::before {
+    border-width: 10px 15px 10px 0; /* 向左的三角形大小 */
+    border-color: transparent white transparent transparent;
+    transform: translate(-62%, -50%);
+  }
+}
+
+.swiper-button-next {
+  &::before {
+    border-width: 10px 0 10px 15px; /* 向右的三角形大小 */
+    border-color: transparent transparent transparent white;
+    transform: translate(-36%, -50%);
+  }
+}
+
 .swiper-pagination-horizontal {
-  bottom: -4px !important;
+  bottom: -20px !important;
 }
 
 @media (min-width: 992px) {
-
   .swiper-button-prev {
-    left: -1% !important;
+    left: 0% !important;
   }
 
   .swiper-button-next {
-    right: -1% !important;
+    right: 0% !important;
   }
 }
 
-@media (min-width: 1300px) {
-
-  .swiper-button-prev {
-    left: -2% !important;
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+.swiper-pagination {
+  .swiper-pagination-bullet {
+    background-color: #a02e38;
+    opacity: 0.5;
   }
-
-  .swiper-button-next {
-    right: -2% !important;
+  .swiper-pagination-bullet-active {
+    width: 16px;
+    height: 8px;
+    border-radius: 100px;
+    opacity: 1;
   }
 }

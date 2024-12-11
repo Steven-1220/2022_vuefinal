@@ -1,21 +1,26 @@
 <template>
-  <section class="container discount px-sm-0 mt-3 mt-md-5">
-    <div class="row justify-content-center">
-      <div class="col p-3 p-md-5">
-        <div
-          class="d-flex flex-column justify-content-center align-items-center"
-        >
-          <h2 class="fs-1">
-            限時 <span class="text-danger fw-bold"> 8折 </span>優惠
-          </h2>
-          <p class="fs-3 text-danger">立刻領取折價券</p>
-          <button
-            type="button"
-            class="btn btn-warning btn-lg"
-            @click="getCoupon"
+  <section class="mt-5 mt-md-6">
+    <div class="container discount">
+      <div class="row justify-content-center">
+        <div class="col p-3 p-md-5">
+          <div
+            class="d-flex flex-column justify-content-center align-items-center"
           >
-            點我領取
-          </button>
+            <div class="animate__animated animate__backInUp">
+              <h2 class="fs-1">
+                限時 <span class="text-danger fw-bold"> 8折 </span>優惠
+              </h2>
+              <p class="fs-3 text-danger text-center">立刻領取折價券</p>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-warning btn-lg"
+              @click="getCoupon"
+            >
+              點我領取
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -52,5 +57,9 @@ export default {
   background-image: url(../assets/images/home02.jpg);
   background-position: 50% 50%;
   background-size: cover;
+}
+.animate__animated.animate__backInUp {
+  --animate-duration: 1.5s;
+  --animate-delay: 0.5s;
 }
 </style>

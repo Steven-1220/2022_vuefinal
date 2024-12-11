@@ -1,12 +1,12 @@
 // ~ 代表 node_modules 的 BS
 @import "~bootstrap/scss/functions";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 // 自定義檔
 @import "./helpers/variables";
 @import "./helpers/utilities";
-// 載入所有 BS 
+// 載入所有 BS
 @import "~bootstrap/scss/bootstrap";
-
 
 //客製化
 @import "./components/header";

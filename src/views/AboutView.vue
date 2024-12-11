@@ -2,7 +2,7 @@
   <VueLoading :active="isLoading" />
   <div class="wrap bg-warning bg-gradient">
     <div class="container py-5">
-      <h2 class="text-center pb-4">關於我們(SweetHome)</h2>
+      <h2 class="text-center pb-4">關於我們 (Elegant Cravings)</h2>
       <div class="row justify-content-center">
         <div
           class="col-md-12 col-lg-6 d-flex justify-content-center align-items-center"
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <h3 class="fs-3">聯絡我們</h3>
           <p>有任何疑問歡迎與我們聯繫</p>
           <ul class="list-unstyled fs-4 text-nowrap">
@@ -42,14 +42,17 @@
               >
             </li>
             <li>
-              <a href="mailto:sweethome@gmail.com" class="text-decoration-none"
-                ><i class="bi bi-envelope-fill"></i> sweethome@gmail.com</a
+              <a
+                href="mailto:elegantCravings@gmail.com"
+                class="text-decoration-none"
+                ><i class="bi bi-envelope-fill"></i>
+                elegantCravings@gmail.com</a
               >
             </li>
             <li><i class="bi bi-geo-alt-fill"></i>台中市南屯區大墩路500號</li>
           </ul>
         </div>
-        <div class="col-md-8 ps-md-7 ps-lg-0">
+        <div class="col-md-7 ps-md-7 ps-lg-0">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.662954530414!2d120.64794831498901!3d24.148471984394696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693dbdf525a123%3A0xecc8ebd0f891d73d!2zNDA45Y-w5Lit5biC5Y2X5bGv5Y2A5aSn5aKp6LevNTAw6Jmf!5e0!3m2!1szh-TW!2stw!4v1648387895181!5m2!1szh-TW!2stw"
             width="100%"

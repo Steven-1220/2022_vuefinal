@@ -17,8 +17,8 @@
         <div
           class="col-12 col-md-7 offset-md-5 d-flex align-items-center txt-block"
         >
-          <div class="text-center special-bg p-3">
-            <h2>派皮</h2>
+          <div class="special-bg p-3" data-aos="zoom-in-up">
+            <h2 class="text-center">派皮</h2>
             <p>
               使用麵粉、奶油為主，質地酥脆，要講求烘烤時間的控制，我們的產品巴黎蛋塔也有使用到派皮作為基底。
             </p>
@@ -37,8 +37,13 @@
           </div>
         </div>
         <div class="col-12 col-md-7 d-flex align-items-center txt-block">
-          <div class="text-center special-bg p-3">
-            <h2>夾心餅乾蛋糕</h2>
+          <div
+            class="special-bg p-3"
+            data-aos="zoom-in-up"
+            data-aos-offset="30"
+            data-aos-anchor-placement="top-center"
+          >
+            <h2 class="text-center">夾心餅乾蛋糕</h2>
             <p>
               在法式甜點中使用頻率很高，常作為蛋糕類的基底或是中間的夾層，知名的歐貝拉蛋糕就有使用，是法式甜點中不可或缺的組合。
             </p>
@@ -59,8 +64,8 @@
         <div
           class="col-12 col-md-7 offset-md-5 d-flex align-items-center txt-block"
         >
-          <div class="text-center special-bg p-3">
-            <h2>法式戚風蛋糕</h2>
+          <div class="special-bg p-3" data-aos="zoom-in-up">
+            <h2 class="text-center">法式戚風蛋糕</h2>
             <p>
               蛋打發後加入麵粉、砂糖、發粉混和，常作為蛋糕的主體。亦可當做底層或夾層蛋糕使用，蓬鬆的口感是最大特色。
             </p>
@@ -79,8 +84,8 @@
           </div>
         </div>
         <div class="col-12 col-md-7 d-flex align-items-center txt-block">
-          <div class="text-center special-bg p-3">
-            <h2>奶黃餡</h2>
+          <div class="special-bg p-3" data-aos="zoom-in-up">
+            <h2 class="text-center">奶黃餡</h2>
             <p>
               最廣為人知的名稱為卡士達醬，組成原料是牛奶、糖、玉米、蛋黃，經典味道的是香草風味，千層派、
               泡芙都有使用。
@@ -102,8 +107,8 @@
         <div
           class="col-12 col-md-7 offset-md-5 d-flex align-items-center txt-block"
         >
-          <div class="text-center special-bg p-3">
-            <h2>巧克力餡</h2>
+          <div class="special-bg p-3" data-aos="zoom-in-up">
+            <h2 class="text-center">巧克力餡</h2>
             <p>
               使用黑巧克力或牛奶巧克力融合液態鮮奶油混和，當作松露巧克力的主體、蛋糕類夾心，可以在
               甜點製作上使用不同的搭配。

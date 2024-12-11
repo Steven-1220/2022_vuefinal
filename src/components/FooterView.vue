@@ -15,9 +15,10 @@
                 </li>
                 <li class="pb-2">
                   <a
-                    href="mailto:sweethome@gmail.com"
+                    href="mailto:elegantCravings@gmail.com"
                     class="text-decoration-none link-light"
-                    ><i class="bi bi-envelope-fill"></i> sweethome@gmail.com</a
+                    ><i class="bi bi-envelope-fill"></i>
+                    elegantCravings@gmail.com</a
                   >
                 </li>
                 <li>
