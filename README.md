@@ -47,16 +47,16 @@ Elegant Cravings 法式甜點電商網站專案，主要使用 Vue CLI 建立的
 
 ### 首頁
 
-![首頁](https://imgur.com/23XlDFh)
+![首頁](https://i.imgur.com/23XlDFh.png)
 
 ### 產品頁面
 
-![產品頁面](https://imgur.com/hTyqDTn)
+![產品頁面](https://i.imgur.com/hTyqDTn.png)
 
 ### 特定產品頁面
 
-![特定產品頁面](https://imgur.com/ujyyc9U)
+![特定產品頁面](https://i.imgur.com/ujyyc9U.png)
 
 ### 購物車流程頁面
 
-![購物車流程頁面](https://imgur.com/zM9QIoO)
+![購物車流程頁面](https://i.imgur.com/zM9QIoO.png)
