@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunke_commerce_dessert"]=self["webpackChunke_commerce_dessert"]||[]).push([[926],{5926:function(e,r,n){n.r(r),n.d(r,{default:function(){return a}});var t=n(3396);function c(e,r){const n=(0,t.up)("RouterView");return(0,t.wg)(),(0,t.j4)(n)}var u=n(89);const s={},o=(0,u.Z)(s,[["render",c]]);var a=o}}]);
+//# sourceMappingURL=926.d90b478a.js.map
