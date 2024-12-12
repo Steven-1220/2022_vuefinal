@@ -52,6 +52,7 @@ const routes = [
           },
           {
             path: "favorite",
+            name: "favorite",
             component: () => import("../views/MyFavorite.vue"),
           },
           {
@@ -64,6 +65,7 @@ const routes = [
           },
           {
             path: "notice",
+            name: "notice",
             component: () => import("../views/ShopInfo.vue"),
           },
         ],
@@ -114,6 +116,14 @@ const router = createRouter({
         top: 0,
       };
     } else if (to.fullPath.match("product")) {
+      return {
+        top: 0,
+      };
+    } else if (to.name === "notice") {
+      return {
+        top: 0,
+      };
+    } else if (to.name === "favorite") {
       return {
         top: 0,
       };
