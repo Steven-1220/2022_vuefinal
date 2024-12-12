@@ -68,13 +68,13 @@
             </div>
 
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
+              <h2 class="accordion-header" id="headingThree">
                 <button
                   class="accordion-button collapsed"
                   type="button"
                   @click="toggleAccordion(2)"
                   aria-expanded="false"
-                  aria-controls="collapseTwo"
+                  aria-controls="collapseThree"
                 >
                   <i class="bi bi-circle-fill me-2"></i>
                   有提供客製化甜點嗎?
@@ -82,9 +82,9 @@
                 </button>
               </h2>
               <div
-                id="collapseTwo"
+                id="collapseThree"
                 class="accordion-collapse collapse"
-                aria-labelledby="headingTwo"
+                aria-labelledby="headingThree"
               >
                 <div class="accordion-body bg-warning">
                   有的，我們接受特殊場合的客製化甜點訂製，請提前至少 14
@@ -94,13 +94,13 @@
             </div>
 
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
+              <h2 class="accordion-header" id="headingFour">
                 <button
                   class="accordion-button collapsed"
                   type="button"
                   @click="toggleAccordion(3)"
                   aria-expanded="false"
-                  aria-controls="collapseTwo"
+                  aria-controls="collapseFour"
                 >
                   <i class="bi bi-circle-fill me-2"></i>
                   如果收到的甜點有問題，該怎麼辦?
@@ -108,9 +108,9 @@
                 </button>
               </h2>
               <div
-                id="collapseTwo"
+                id="collapseFour"
                 class="accordion-collapse collapse"
-                aria-labelledby="headingTwo"
+                aria-labelledby="headingFour"
               >
                 <div class="accordion-body bg-warning">
                   若您收到的甜點有損壞或其他問題，請在24小時內拍照聯繫客服，我們會盡快為您提供補救方案或退款服務。
@@ -119,13 +119,13 @@
             </div>
 
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h2 class="accordion-header" id="headingFive">
                 <button
                   class="accordion-button collapsed"
                   type="button"
                   @click="toggleAccordion(4)"
                   aria-expanded="false"
-                  aria-controls="collapseThree"
+                  aria-controls="collapseFive"
                 >
                   <i class="bi bi-circle-fill me-2"></i>
                   有哪些付款方式呢?
@@ -133,9 +133,9 @@
                 </button>
               </h2>
               <div
-                id="collapseThree"
+                id="collapseFive"
                 class="accordion-collapse collapse"
-                aria-labelledby="headingThree"
+                aria-labelledby="headingFive"
               >
                 <div class="accordion-body bg-warning">
                   我們提供信用卡付款、ATM
@@ -177,6 +177,17 @@ export default {
       )[index];
       arrowIcon.classList.toggle("active");
     },
+    closeAllAccordion() {
+      this.accordionModals.forEach((modal) => {
+        modal.hide();
+      });
+      const allArrowIcons = [
+        ...document.querySelectorAll(".accordion-button .rotate-icon"),
+      ];
+      allArrowIcons.forEach((item) => {
+        item.classList.remove("active");
+      });
+    },
   },
   mounted() {
     this.LoadingEffect();
@@ -186,6 +197,7 @@ export default {
     this.accordionModals = Array.from(accordionElements).map(
       (element) => new Collapse(element, { toggle: false }),
     );
+    this.closeAllAccordion();
   },
 };
 </script>
